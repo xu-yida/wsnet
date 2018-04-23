@@ -13,9 +13,7 @@ libwsens_srv_a-worldsens_pkt.o: worldsens_pkt.c \
  /usr/include/_G_config.h /usr/include/wchar.h \
  /usr/lib/gcc/i686-linux-gnu/6/include/stdarg.h \
  /usr/include/i386-linux-gnu/bits/stdio_lim.h \
- /usr/include/i386-linux-gnu/bits/sys_errlist.h \
- /usr/include/i386-linux-gnu/bits/stdio.h \
- /usr/include/i386-linux-gnu/bits/stdio2.h
+ /usr/include/i386-linux-gnu/bits/sys_errlist.h
 
 /usr/include/stdc-predef.h:
 
@@ -58,7 +56,3 @@ libwsens_srv_a-worldsens_pkt.o: worldsens_pkt.c \
 /usr/include/i386-linux-gnu/bits/stdio_lim.h:
 
 /usr/include/i386-linux-gnu/bits/sys_errlist.h:
-
-/usr/include/i386-linux-gnu/bits/stdio.h:
-
-/usr/include/i386-linux-gnu/bits/stdio2.h:

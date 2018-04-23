@@ -6,10 +6,8 @@ wsnet-environment_config.o: environment_config.c \
  /usr/include/i386-linux-gnu/gnu/stubs.h \
  /usr/include/i386-linux-gnu/gnu/stubs-32.h \
  /usr/lib/gcc/i686-linux-gnu/6/include/stddef.h /usr/include/xlocale.h \
- /usr/include/i386-linux-gnu/bits/string.h \
- /usr/include/i386-linux-gnu/bits/string2.h /usr/include/stdlib.h \
- /usr/include/i386-linux-gnu/bits/string3.h /usr/include/assert.h \
- /usr/include/math.h /usr/include/i386-linux-gnu/bits/math-vector.h \
+ /usr/include/assert.h /usr/include/math.h \
+ /usr/include/i386-linux-gnu/bits/math-vector.h \
  /usr/include/i386-linux-gnu/bits/libm-simd-decl-stubs.h \
  /usr/include/i386-linux-gnu/bits/huge_val.h \
  /usr/include/i386-linux-gnu/bits/huge_valf.h \
@@ -18,7 +16,6 @@ wsnet-environment_config.o: environment_config.c \
  /usr/include/i386-linux-gnu/bits/nan.h \
  /usr/include/i386-linux-gnu/bits/mathdef.h \
  /usr/include/i386-linux-gnu/bits/mathcalls.h \
- /usr/include/i386-linux-gnu/bits/mathinline.h \
  /usr/include/glib-2.0/glib.h /usr/include/glib-2.0/glib/galloca.h \
  /usr/include/glib-2.0/glib/gtypes.h \
  /usr/lib/i386-linux-gnu/glib-2.0/include/glibconfig.h \
@@ -108,7 +105,6 @@ wsnet-environment_config.o: environment_config.c \
  /usr/include/i386-linux-gnu/bits/byteswap-16.h \
  /usr/include/i386-linux-gnu/sys/select.h \
  /usr/include/i386-linux-gnu/bits/select.h \
- /usr/include/i386-linux-gnu/bits/select2.h \
  /usr/include/i386-linux-gnu/sys/sysmacros.h /usr/include/pthread.h \
  /usr/include/sched.h /usr/include/i386-linux-gnu/bits/sched.h \
  /usr/include/i386-linux-gnu/bits/setjmp.h \
@@ -118,8 +114,6 @@ wsnet-environment_config.o: environment_config.c \
  /usr/include/libio.h /usr/include/_G_config.h /usr/include/wchar.h \
  /usr/include/i386-linux-gnu/bits/stdio_lim.h \
  /usr/include/i386-linux-gnu/bits/sys_errlist.h \
- /usr/include/i386-linux-gnu/bits/stdio.h \
- /usr/include/i386-linux-gnu/bits/stdio2.h \
  /usr/include/libxml2/libxml/xmlversion.h \
  /usr/include/libxml2/libxml/xmlexports.h \
  /usr/include/libxml2/libxml/xmlstring.h \
@@ -145,12 +139,10 @@ wsnet-environment_config.o: environment_config.c \
  /usr/include/unicode/utf8.h /usr/include/unicode/utf16.h \
  /usr/include/unicode/utf_old.h /usr/include/unicode/uenum.h \
  /usr/include/unicode/localpointer.h /usr/include/libxml2/libxml/xmlIO.h \
- /usr/include/libxml2/libxml/SAX.h \
+ /usr/include/libxml2/libxml/SAX.h /usr/include/stdlib.h \
  /usr/include/i386-linux-gnu/bits/waitflags.h \
  /usr/include/i386-linux-gnu/bits/waitstatus.h /usr/include/alloca.h \
- /usr/include/i386-linux-gnu/bits/stdlib-bsearch.h \
  /usr/include/i386-linux-gnu/bits/stdlib-float.h \
- /usr/include/i386-linux-gnu/bits/stdlib.h \
  /usr/include/libxml2/libxml/xlink.h /usr/include/libxml2/libxml/SAX2.h \
  /usr/include/libxml2/libxml/xpath.h \
  /usr/include/libxml2/libxml/xpathInternals.h \
@@ -158,7 +150,6 @@ wsnet-environment_config.o: environment_config.c \
  /usr/include/unistd.h /usr/include/i386-linux-gnu/bits/posix_opt.h \
  /usr/include/i386-linux-gnu/bits/environments.h \
  /usr/include/i386-linux-gnu/bits/confname.h /usr/include/getopt.h \
- /usr/include/i386-linux-gnu/bits/unistd.h \
  /usr/include/i386-linux-gnu/sys/time.h ../include/modelutils.h \
  ../include/options.h ../include/log.h ../include/mem_fs.h \
  ../include/das.h ../include/sodas.h ../include/spadas.h \
@@ -200,14 +191,6 @@ xmlparser.h:
 
 /usr/include/xlocale.h:
 
-/usr/include/i386-linux-gnu/bits/string.h:
-
-/usr/include/i386-linux-gnu/bits/string2.h:
-
-/usr/include/stdlib.h:
-
-/usr/include/i386-linux-gnu/bits/string3.h:
-
 /usr/include/assert.h:
 
 /usr/include/math.h:
@@ -229,8 +212,6 @@ xmlparser.h:
 /usr/include/i386-linux-gnu/bits/mathdef.h:
 
 /usr/include/i386-linux-gnu/bits/mathcalls.h:
-
-/usr/include/i386-linux-gnu/bits/mathinline.h:
 
 /usr/include/glib-2.0/glib.h:
 
@@ -450,8 +431,6 @@ xmlparser.h:
 
 /usr/include/i386-linux-gnu/bits/select.h:
 
-/usr/include/i386-linux-gnu/bits/select2.h:
-
 /usr/include/i386-linux-gnu/sys/sysmacros.h:
 
 /usr/include/pthread.h:
@@ -481,10 +460,6 @@ xmlparser.h:
 /usr/include/i386-linux-gnu/bits/stdio_lim.h:
 
 /usr/include/i386-linux-gnu/bits/sys_errlist.h:
-
-/usr/include/i386-linux-gnu/bits/stdio.h:
-
-/usr/include/i386-linux-gnu/bits/stdio2.h:
 
 /usr/include/libxml2/libxml/xmlversion.h:
 
@@ -562,17 +537,15 @@ xmlparser.h:
 
 /usr/include/libxml2/libxml/SAX.h:
 
+/usr/include/stdlib.h:
+
 /usr/include/i386-linux-gnu/bits/waitflags.h:
 
 /usr/include/i386-linux-gnu/bits/waitstatus.h:
 
 /usr/include/alloca.h:
 
-/usr/include/i386-linux-gnu/bits/stdlib-bsearch.h:
-
 /usr/include/i386-linux-gnu/bits/stdlib-float.h:
-
-/usr/include/i386-linux-gnu/bits/stdlib.h:
 
 /usr/include/libxml2/libxml/xlink.h:
 
@@ -595,8 +568,6 @@ internals.h:
 /usr/include/i386-linux-gnu/bits/confname.h:
 
 /usr/include/getopt.h:
-
-/usr/include/i386-linux-gnu/bits/unistd.h:
 
 /usr/include/i386-linux-gnu/sys/time.h:
 

@@ -164,7 +164,7 @@ AUTOMAKE = ${SHELL} /home/xu/wsnet/missing automake-1.15
 AWK = mawk
 CC = gcc
 CCDEPMODE = depmode=gcc3
-CFLAGS = -O2 -fno-strict-aliasing -Wall -Wextra -Wno-unused-parameter -Werror -DLIBDIR='"${exec_prefix}/lib"' -DDATADIR='"${datarootdir}"' 
+CFLAGS = -g -pg -fno-strict-aliasing -Wall -Wextra -Wno-unused-parameter -Werror -DLIBDIR='"${exec_prefix}/lib"' -DDATADIR='"${datarootdir}"' 
 CPP = gcc -E
 CPPFLAGS = 
 CYGPATH_W = echo
