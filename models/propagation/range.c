@@ -64,9 +64,7 @@ double propagation(call_t *c, packet_t *packet, nodeid_t src, nodeid_t dst, doub
     struct entitydata *entitydata = get_entity_private_data(c);
     double dist = distance(get_node_position(src), get_node_position(dst));
 
-	// <-RF00000000-AdamXu-2018/04/23-Please_input_your_comment_statement_here.
-	PRINT_APPLICATION("propagation, Rang.c: entitydata->range=%f, dist=%f\n", entitydata->range, dist);
-	// ->RF00000000-AdamXu
+
     if (dist > entitydata->range) {
         return MIN_DBM;
     } else {
