@@ -25,7 +25,9 @@
 			printf("Cannot open log file!\n");\
 			break;\
 		}\
-		fprintf(x);\
+		fprintf(file, "%s: ", __FUNCTION__); \
+		fprintf(file, arg); \
+		fclose(file);\
 	}while(0);
 #else
 #define PRINT_REPLAY(x...) printf(x)
