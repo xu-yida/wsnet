@@ -259,6 +259,9 @@ void rx(call_t *c, packet_t *packet) {
 
 void cs(call_t *c, packet_t *packet) {
     struct nodedata *nodedata = get_node_private_data(c);
+// <-RF00000000-AdamXu-2018/04/25-Please_input_your_comment_statement_here.
+        PRINT_REPLAY("Half1d B: radio-rx0 %"PRId64" %d, packet->rxdBm=%f, nodedata->rxdBm=%f, nodedata->rx_busy=%d, packet->id=%d\n", get_time(), c->node, packet->rxdBm, nodedata->rxdBm, nodedata->rx_busy, packet->id);
+// ->RF00000000-AdamXu
 
     /* radio sleep */
     if (nodedata->sleep) {
@@ -294,6 +297,9 @@ void cs(call_t *c, packet_t *packet) {
     if (packet->rxdBm > nodedata->rxdBm) {
         nodedata->rxdBm = packet->rxdBm;
         nodedata->rx_busy = packet->id;
+// <-RF00000000-AdamXu-2018/04/25-Please_input_your_comment_statement_here.
+        PRINT_REPLAY("Half1d E: radio-rx0 %"PRId64" %d, packet->rxdBm=%f, nodedata->rxdBm=%f, nodedata->rx_busy=%d, packet->id=%d\n", get_time(), c->node, packet->rxdBm, nodedata->rxdBm, nodedata->rx_busy, packet->id);
+// ->RF00000000-AdamXu
         /* log cs */
         PRINT_REPLAY("radio-rx0 %"PRId64" %d\n", get_time(), c->node);
         return;
