@@ -297,11 +297,20 @@ void medium_compute_rxdBm(packet_t *packet, call_t *c) {
     position_t *pos_tx = get_node_position(packet->node);
     position_t *pos_rx = get_node_position(c->node);
 
+// <-RF00000000-AdamXu-2018/04/25-add log for radio
+        PRINT_REPLAY("Medium 1: rxdBm=%f\n", rxdBm);
+// ->RF00000000-AdamXu
     /* antenna tx white noise */
     rxdBm += antenna_get_loss(&c0);
+// <-RF00000000-AdamXu-2018/04/25-add log for radio
+        PRINT_REPLAY("Medium 2: rxdBm=%f\n", rxdBm);
+// ->RF00000000-AdamXu
 
     /* antenna tx gain (TODO: angle au moment de l'émission) */
     rxdBm += antenna_gain_tx(&c0, pos_rx);
+// <-RF00000000-AdamXu-2018/04/25-add log for radio
+        PRINT_REPLAY("Medium 3: rxdBm=%f\n", rxdBm);
+// ->RF00000000-AdamXu
 
     /* propagation */
     c0.entity = propagation_entity->id;
@@ -310,14 +319,23 @@ void medium_compute_rxdBm(packet_t *packet, call_t *c) {
                                                                      packet->node,
                                                                      c->node, rxdBm);
     }
+// <-RF00000000-AdamXu-2018/04/25-add log for radio
+        PRINT_REPLAY("Medium 4: rxdBm=%f\n", rxdBm);
+// ->RF00000000-AdamXu
 
     /* TODO: add shadowing & fading only if > MIN_DBM */
 
     /* antenna rx gain */
     rxdBm += antenna_gain_rx(c, pos_tx);
+// <-RF00000000-AdamXu-2018/04/25-add log for radio
+        PRINT_REPLAY("Medium 5: rxdBm=%f\n", rxdBm);
+// ->RF00000000-AdamXu
 
     /* antenna rx white noise */
     rxdBm += antenna_get_loss(c);
+// <-RF00000000-AdamXu-2018/04/25-add log for radio
+        PRINT_REPLAY("Medium 6: rxdBm=%f\n", rxdBm);
+// ->RF00000000-AdamXu
 
     /* rx power */
     packet->rxdBm = rxdBm;
