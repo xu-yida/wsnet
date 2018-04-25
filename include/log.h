@@ -8,10 +8,29 @@
 #define __log__
 
 #include <include/options.h>
+// <-RF00000000-AdamXu-2018/04/25-write log into files
+#ifdef ADAM_LOG_FILE
+#include <include/modelutils.h>
+#endif
+// ->RF00000000-AdamXu
 
 
 #ifdef LOG_REPLAY
+// <-RF00000000-AdamXu-2018/04/25-write log into files
+#ifdef ADAM_LOG_FILE
+#define PRINT_REPLAY(x...) do{
+		FILE* file;
+		if(NULL == (file = fopen(ADAM_LOG_NAME, "w+")))
+		{
+			printf("Cannot open log file!\n");
+			break;
+		}
+		fprintf(x);
+	}while(0);
+#else
 #define PRINT_REPLAY(x...) printf(x)
+#endif
+// ->RF00000000-AdamXu
 #else //LOG_REPLAY
 #define PRINT_REPLAY(x...) do { } while (0)
 #endif //LOG_REPLAY
