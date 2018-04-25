@@ -20,7 +20,7 @@
 #ifdef ADAM_LOG_FILE
 #define PRINT_REPLAY(x...) do{\
 		FILE* file;\
-		if(NULL == (file = fopen(ADAM_LOG_NAME, "w+")))\
+		if(NULL == (file = fopen(ADAM_LOG_NAME, "a")))\
 		{\
 			printf("Cannot open log file!\n");\
 			break;\
