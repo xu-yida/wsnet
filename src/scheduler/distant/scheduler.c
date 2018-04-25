@@ -354,6 +354,9 @@ void do_event(event_t *event) {
     if (ws_count)    /* WORLDSENS MODE? */
         worldsens_rdv_update(event);
 
+// <-RF00000000-AdamXu-2018/04/25-add log for radio
+        PRINT_REPLAY("Scheduler do_event: event->priority=%d\n", event->priority);
+// ->RF00000000-AdamXu
     switch (event->priority) {
     case PRIORITY_BIRTH:
         node_birth(event->u.nodeid);

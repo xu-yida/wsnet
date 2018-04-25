@@ -226,6 +226,9 @@ void medium_cs(packet_t *packet, call_t *c) {
     node_t *node = get_node_by_id(c->node);
     entity_t *entity = get_entity_by_id(c->entity);
 
+// <-RF00000000-AdamXu-2018/04/25-add log for radio
+        PRINT_REPLAY("Medium medium_cs B\n");
+// ->RF00000000-AdamXu
     /* check wether the node is able to receive */
     if (node->state != NODE_ACTIVE) {
         packet_dealloc(packet);
