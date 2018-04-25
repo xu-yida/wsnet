@@ -26,7 +26,7 @@
 			break;\
 		}\
 		fprintf(file, "%s: ", __FUNCTION__); \
-		fprintf(file, arg); \
+		fprintf(file, x); \
 		fclose(file);\
 	}while(0);
 #else
