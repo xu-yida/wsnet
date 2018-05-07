@@ -203,6 +203,9 @@ void rx(call_t *c, packet_t *packet) {
     struct nodedata *nodedata = get_node_private_data(c);
     array_t *up = get_entity_bindings_up(c);
     int i = up->size;
+// <-RF00000000-AdamXu-2018/05/07-add radio log.
+    PRINT_RADIO("Half1d rx B\n");
+// ->RF00000000-AdamXu
 
     /* radio sleep */
     if (nodedata->sleep) {
@@ -253,12 +256,18 @@ void rx(call_t *c, packet_t *packet) {
         }
         RX(&c_up, packet_up);
     }
+// <-RF00000000-AdamXu-2018/05/07-add radio log.
+    PRINT_RADIO("Half1d rx E\n");
+// ->RF00000000-AdamXu
 
     return;
 }
 
 void cs(call_t *c, packet_t *packet) {
     struct nodedata *nodedata = get_node_private_data(c);
+// <-RF00000000-AdamXu-2018/05/07-add radio log.
+    PRINT_RADIO("Half1d cs B\n");
+// ->RF00000000-AdamXu
 // <-RF00000000-AdamXu-2018/04/25-add log for radio
         PRINT_RADIO("Half1d B: radio-rx0 %"PRId64" %d, packet->rxdBm=%f, nodedata->rxdBm=%f, nodedata->rx_busy=%d, packet->id=%d\n", get_time(), c->node, packet->rxdBm, nodedata->rxdBm, nodedata->rx_busy, packet->id);
 // ->RF00000000-AdamXu
@@ -305,6 +314,9 @@ void cs(call_t *c, packet_t *packet) {
         return;
     }
 
+// <-RF00000000-AdamXu-2018/05/07-add radio log.
+    PRINT_RADIO("Half1d cs E\n");
+// ->RF00000000-AdamXu
     return;
 }
 
