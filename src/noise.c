@@ -158,6 +158,9 @@ void add_signal2noise(double *noise, int channel, double signal) {
     int i;
     for (i = 0; i < CHANNELS_NUMBER; i++) {
         noise[i] += correlation[i][channel] * signal;
+// <-RF00000000-AdamXu-2018/05/08-add noise log.
+    PRINT_REPLAY("noise[%d]=%f\n", i, noise[i]);
+// ->RF00000000-AdamXu
     }
 }
 
@@ -165,6 +168,9 @@ void add_new_signal2noise(double *noise, int channel, double signal) {
     int i;
     for (i = 0; i < CHANNELS_NUMBER; i++) {
         noise[i] = correlation[i][channel] * signal;
+// <-RF00000000-AdamXu-2018/05/08-add noise log.
+    PRINT_REPLAY("noise[%d]=%f\n", i, noise[i]);
+// ->RF00000000-AdamXu
     }
 }
 
@@ -338,6 +344,9 @@ static inline uint64_t min(uint64_t a, uint64_t b) {
 
 void update_noise(noise_interval_t *interval, nodeid_t node, packet_t *packet, uint64_t *f_begin, 
                   uint64_t *f_end, uint64_t *f_duration, int *f_current) {
+// <-RF00000000-AdamXu-2018/05/08-add noise log.
+    PRINT_REPLAY("packet->noise_mW[(%d)]=%f\n", *f_current, packet->noise_mW[(*f_current)]);
+// ->RF00000000-AdamXu
     if (interval->begin > (*f_begin)) {
         
         /* interval begins in this frame: update for min((*f_end), interval->end) - interval->begin */
