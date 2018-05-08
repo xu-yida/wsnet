@@ -205,7 +205,7 @@ void rx(call_t *c, packet_t *packet) {
     int i = up->size;
 // <-RF00000000-AdamXu-2018/05/07-add radio log.
     PRINT_RADIO("Half1d rx B packet->id=%d, c->node=%d\n", packet->id, c->node);
-    PRINT_RADIO("noise=%f\n", get_noise(c));
+    PRINT_REPLAY("noise=%f\n", get_noise(c));
 // ->RF00000000-AdamXu
 
     /* radio sleep */
@@ -259,7 +259,7 @@ void rx(call_t *c, packet_t *packet) {
     }
 // <-RF00000000-AdamXu-2018/05/07-add radio log.
     PRINT_RADIO("Half1d rx E\n");
-    PRINT_RADIO("noise=%f\n", get_noise(c));
+    PRINT_REPLAY("noise=%f\n", get_noise(c));
 // ->RF00000000-AdamXu
 
     return;
@@ -269,7 +269,7 @@ void cs(call_t *c, packet_t *packet) {
     struct nodedata *nodedata = get_node_private_data(c);
 // <-RF00000000-AdamXu-2018/05/07-add radio log.
     PRINT_RADIO("Half1d cs B: packet->id=%d, c->node=%d\n", packet->id, c->node);
-    PRINT_RADIO("noise=%f\n", get_noise(c));
+    PRINT_REPLAY("noise=%f\n", get_noise(c));
 // ->RF00000000-AdamXu
 
     /* radio sleep */
@@ -313,7 +313,7 @@ void cs(call_t *c, packet_t *packet) {
 
 // <-RF00000000-AdamXu-2018/05/07-add radio log.
     PRINT_RADIO("Half1d cs E\n");
-    PRINT_RADIO("noise=%f\n", get_noise(c));
+    PRINT_REPLAY("noise=%f\n", get_noise(c));
 // ->RF00000000-AdamXu
     return;
 }
