@@ -359,7 +359,7 @@ static inline uint64_t min(uint64_t a, uint64_t b) {
 void update_noise(noise_interval_t *interval, nodeid_t node, packet_t *packet, uint64_t *f_begin, 
                   uint64_t *f_end, uint64_t *f_duration, int *f_current) {
 // <-RF00000000-AdamXu-2018/05/08-add noise log.
-    PRINT_REPLAY("packet->noise_mW[(%d)]=%f\n", *f_current, packet->noise_mW[(*f_current)]);
+    PRINT_REPLAY("B packet->noise_mW[(%d)]=%f\n", *f_current, packet->noise_mW[(*f_current)]);
 // ->RF00000000-AdamXu
     if (interval->begin > (*f_begin)) {
         
@@ -424,6 +424,9 @@ void update_noise(noise_interval_t *interval, nodeid_t node, packet_t *packet, u
         }
         
         update_noise(interval, node, packet, f_begin, f_end, f_duration, f_current);
+// <-RF00000000-AdamXu-2018/05/08-add noise log.
+    PRINT_REPLAY("E packet->noise_mW[(%d)]=%f\n", *f_current, packet->noise_mW[(*f_current)]);
+// ->RF00000000-AdamXu
     }
 }
 
