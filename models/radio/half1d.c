@@ -208,7 +208,7 @@ void rx(call_t *c, packet_t *packet) {
     int i = up->size;
 // <-RF00000000-AdamXu-2018/05/07-add radio log.
     PRINT_RADIO("Half1d rx B packet->id=%d, c->node=%d\n", packet->id, c->node);
-    PRINT_REPLAY("noise=%f\n", get_noise(c));
+    PRINT_REPLAY("get_noise=%f, packet->noise_mW[%d]=%f\n", get_noise(c), packet->channel, packet->noise_mW[packet->channel]);
 // ->RF00000000-AdamXu
 
     /* radio sleep */
@@ -262,7 +262,7 @@ void rx(call_t *c, packet_t *packet) {
     }
 // <-RF00000000-AdamXu-2018/05/07-add radio log.
     PRINT_RADIO("Half1d rx E\n");
-    PRINT_REPLAY("noise=%f\n", get_noise(c));
+    PRINT_REPLAY("get_noise=%f, packet->noise_mW[%d]=%f\n", get_noise(c), packet->channel, packet->noise_mW[packet->channel]);
 // ->RF00000000-AdamXu
 
     return;
