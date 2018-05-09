@@ -319,12 +319,12 @@ void noise_packet_cs(call_t *c, packet_t *packet) {
 	// ->RF00000000-AdamXu
         if (add_packet2interval(noise, interval, packet)) {
 		// <-RF00000000-AdamXu-2018/05/08-add noise log.
-		PRINT_REPLAY("interval->active=%d, interval->noise[%d]=%f, packet->rxmW=%f\n", interval->active, packet->channel, interval->noise[packet->channel], packet->rxmW);
+		PRINT_REPLAY("if interval->active=%d, interval->noise[%d]=%f, packet->rxmW=%f\n", interval->active, packet->channel, interval->noise[packet->channel], packet->rxmW);
 		// ->RF00000000-AdamXu
             return;
         }
 	// <-RF00000000-AdamXu-2018/05/08-add noise log.
-	PRINT_REPLAY("interval->active=%d, interval->noise[%d]=%f, packet->rxmW=%f\n", interval->active, packet->channel, interval->noise[packet->channel], packet->rxmW);
+	PRINT_REPLAY("else interval->active=%d, interval->noise[%d]=%f, packet->rxmW=%f\n", interval->active, packet->channel, interval->noise[packet->channel], packet->rxmW);
 	// ->RF00000000-AdamXu
         interval = interval->next;
     }    
