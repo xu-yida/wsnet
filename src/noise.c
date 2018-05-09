@@ -318,8 +318,18 @@ void noise_packet_cs(call_t *c, packet_t *packet) {
 	PRINT_REPLAY("packet->clock0=%"PRId64", packet->clock1=%"PRId64"\n", packet->clock0, packet->clock1);
 	// ->RF00000000-AdamXu
         if (add_packet2interval(noise, interval, packet)) {
+		// <-RF00000000-AdamXu-2018/05/08-add noise log.
+		PRINT_REPLAY("if interval->active=%d, packet->rxmW=%f\n", interval->active, packet->rxmW);
+		PRINT_REPLAY("if interval->begin=%"PRId64", interval->end=%"PRId64"\n", interval->begin, interval->end);
+		PRINT_REPLAY("if packet->clock0=%"PRId64", packet->clock1=%"PRId64"\n", packet->clock0, packet->clock1);
+		// ->RF00000000-AdamXu
             return;
         }
+	// <-RF00000000-AdamXu-2018/05/08-add noise log.
+	PRINT_REPLAY("else interval->active=%d, packet->rxmW=%f\n", interval->active, packet->rxmW);
+	PRINT_REPLAY("else interval->begin=%"PRId64", interval->end=%"PRId64"\n", interval->begin, interval->end);
+	PRINT_REPLAY("else packet->clock0=%"PRId64", packet->clock1=%"PRId64"\n", packet->clock0, packet->clock1);
+	// ->RF00000000-AdamXu
         interval = interval->next;
     }    
 
