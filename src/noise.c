@@ -313,6 +313,7 @@ void noise_packet_cs(call_t *c, packet_t *packet) {
     interval = noise->current;
     while (interval) {
 	// <-RF00000000-AdamXu-2018/05/08-add noise log.
+	PRINT_REPLAY("packet->id=%d, c->node=%d\n", packet->id, c->node);
 	PRINT_REPLAY("interval->active=%d, interval->noise[%d]=%f, packet->rxmW=%f\n", interval->active, packet->channel, interval->noise[packet->channel], packet->rxmW);
 	PRINT_REPLAY("interval->begin=%"PRId64", interval->end=%"PRId64"\n", interval->begin, interval->end);
 	PRINT_REPLAY("packet->clock0=%"PRId64", packet->clock1=%"PRId64"\n", packet->clock0, packet->clock1);
