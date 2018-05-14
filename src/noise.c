@@ -446,7 +446,7 @@ void noise_packet_rx(call_t *c, packet_t *packet) {
     int f_current; 
 
 	// <-RF00000000-AdamXu-2018/05/14-add noise log.
-	PRINT_REPLAY("B: packet->id=%d\n", packet->id);
+	PRINT_REPLAY("B: packet->id=%d, c->node=%d\n", packet->id, c->node);
 	// ->RF00000000-AdamXu
     /* set frame informations */
     f_end = packet->clock1;
