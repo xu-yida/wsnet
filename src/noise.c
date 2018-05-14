@@ -293,6 +293,9 @@ void noise_packet_cs(call_t *c, packet_t *packet) {
         add_new_signal2noise(interval->noise, packet->channel, packet->rxmW);
 
         noise->first = noise->current = noise->last = interval;
+	// <-RF00000000-AdamXu-2018/05/14-add noise log.
+	PRINT_REPLAY("noise->last == NULL interval->noise[%d]=%f\n", packet->channel, interval->noise[packet->channel]);
+	// ->RF00000000-AdamXu
         return;
     } else if( (noise->current) == NULL && (noise->last != NULL)) {
         /* successive */
@@ -306,6 +309,9 @@ void noise_packet_cs(call_t *c, packet_t *packet) {
         
         noise->last->next = interval;
         noise->last = interval;
+	// <-RF00000000-AdamXu-2018/05/14-add noise log.
+	PRINT_REPLAY("noise->last != NULL interval->noise[%d]=%f\n", packet->channel, interval->noise[packet->channel]);
+	// ->RF00000000-AdamXu
         return;
     }
 
@@ -424,10 +430,10 @@ void update_noise(noise_interval_t *interval, nodeid_t node, packet_t *packet, u
         }
         
         update_noise(interval, node, packet, f_begin, f_end, f_duration, f_current);
+    }
 // <-RF00000000-AdamXu-2018/05/08-add noise log.
     PRINT_REPLAY("E packet->noise_mW[(%d)]=%f\n", *f_current, packet->noise_mW[(*f_current)]);
 // ->RF00000000-AdamXu
-    }
 }
 
 void noise_packet_rx(call_t *c, packet_t *packet) {
@@ -438,6 +444,9 @@ void noise_packet_rx(call_t *c, packet_t *packet) {
     uint64_t f_duration;
     int f_current; 
 
+	// <-RF00000000-AdamXu-2018/05/14-add noise log.
+	PRINT_REPLAY("B\n");
+	// ->RF00000000-AdamXu
     /* set frame informations */
     f_end = packet->clock1;
 #if (SNR_STEP > 0)
@@ -467,6 +476,9 @@ void noise_packet_rx(call_t *c, packet_t *packet) {
     while (interval) {
         /* we have reached the end of the packet */
         if (interval->end <= packet->clock0) {
+		// <-RF00000000-AdamXu-2018/05/14-add noise log.
+		PRINT_REPLAY("E1\n");
+		// ->RF00000000-AdamXu
             return;
         }
         
@@ -497,6 +509,9 @@ void noise_packet_rx(call_t *c, packet_t *packet) {
                 mem_fs_dealloc(mem_interval, t_interval);
             }
 
+		// <-RF00000000-AdamXu-2018/05/14-add noise log.
+		PRINT_REPLAY("E2\n");
+		// ->RF00000000-AdamXu
             return;
         }
 
@@ -506,6 +521,9 @@ void noise_packet_rx(call_t *c, packet_t *packet) {
         interval = interval->prev;
     }
     
+	// <-RF00000000-AdamXu-2018/05/14-add noise log.
+	PRINT_REPLAY("E3\n");
+	// ->RF00000000-AdamXu
     return;
 }
 
