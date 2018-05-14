@@ -365,7 +365,8 @@ static inline uint64_t min(uint64_t a, uint64_t b) {
 void update_noise(noise_interval_t *interval, nodeid_t node, packet_t *packet, uint64_t *f_begin, 
                   uint64_t *f_end, uint64_t *f_duration, int *f_current) {
 // <-RF00000000-AdamXu-2018/05/08-add noise log.
-    PRINT_REPLAY("B packet->noise_mW[(%d)]=%f\n", *f_current, packet->noise_mW[(*f_current)]);
+	PRINT_REPLAY("B packet->noise_mW[(%d)]=%f\n", *f_current, packet->noise_mW[(*f_current)]);
+	PRINT_REPLAY("interval->begin=%"PRId64", *f_begin=%"PRId64"\n", interval->begin, *f_begin);
 // ->RF00000000-AdamXu
     if (interval->begin > (*f_begin)) {
         
@@ -445,7 +446,7 @@ void noise_packet_rx(call_t *c, packet_t *packet) {
     int f_current; 
 
 	// <-RF00000000-AdamXu-2018/05/14-add noise log.
-	PRINT_REPLAY("B\n");
+	PRINT_REPLAY("B: packet->id=%d\n", packet->id);
 	// ->RF00000000-AdamXu
     /* set frame informations */
     f_end = packet->clock1;
