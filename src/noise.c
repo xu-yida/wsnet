@@ -281,6 +281,9 @@ void noise_packet_cs(call_t *c, packet_t *packet) {
     noise_t *noise = get_noise_byid(c);
     noise_interval_t *interval;
     
+	// <-RF00000000-AdamXu-2018/05/14-add noise log.
+	PRINT_REPLAY("B: packet->id=%d, c->node=%d\n", packet->id, c->node);
+	// ->RF00000000-AdamXu
     /* go to current */
     noise_update_current(noise, time);
     if ((noise->current) == NULL && (noise->last == NULL)) {
