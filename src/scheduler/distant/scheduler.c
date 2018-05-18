@@ -356,6 +356,7 @@ void do_event(event_t *event) {
 
 // <-RF00000000-AdamXu-2018/04/25-add log for radio
         PRINT_REPLAY("Scheduler do_event: event->priority=%d\n", event->priority);
+        PRINT_REPLAY("Scheduler do_event: packet->id=%d, c->node=%d\n", event->u.rx.packet->id, event->u.rx.call.node);
 // ->RF00000000-AdamXu
     switch (event->priority) {
     case PRIORITY_BIRTH:

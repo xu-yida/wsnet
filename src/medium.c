@@ -227,7 +227,7 @@ void medium_cs(packet_t *packet, call_t *c) {
     entity_t *entity = get_entity_by_id(c->entity);
 
 // <-RF00000000-AdamXu-2018/04/25-add log for radio
-        PRINT_REPLAY("Medium medium_cs B\n");
+        PRINT_REPLAY("Medium medium_cs B: packet->id=%d, c->node=%d\n", packet->id, c->node);
 // ->RF00000000-AdamXu
     /* check wether the node is able to receive */
     if (node->state != NODE_ACTIVE) {
@@ -344,3 +344,14 @@ void medium_compute_rxdBm(packet_t *packet, call_t *c) {
     packet->rxdBm = rxdBm;
     packet->rxmW = dBm2mW(rxdBm);
 }
+
+
+
+/* ************************************************** */
+// SIC interface on media layer
+/* ************************************************** */
+void Adam_MEDIA_INTERFERENCE_CANCELLATION(call_t *c, int channel) {
+    call_t c0 = {c->from, c->node, -1};
+    return medium_get_noise(&c0, channel);
+}
+
