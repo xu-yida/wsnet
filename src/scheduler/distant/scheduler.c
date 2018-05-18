@@ -356,7 +356,6 @@ void do_event(event_t *event) {
 
 // <-RF00000000-AdamXu-2018/04/25-add log for radio
         PRINT_REPLAY("Scheduler do_event: event->priority=%d\n", event->priority);
-        PRINT_REPLAY("Scheduler do_event: packet->id=%d, c->node=%d\n", event->u.rx.packet->id, event->u.rx.call.node);
 // ->RF00000000-AdamXu
     switch (event->priority) {
     case PRIORITY_BIRTH:
@@ -366,13 +365,22 @@ void do_event(event_t *event) {
         mobility_event(g_clock);
         break;
     case PRIORITY_RX_BEGIN:
+// <-RF00000000-AdamXu-2018/05/18-add log for noise.
+        PRINT_REPLAY("Scheduler do_event: packet->id=%d, c->node=%d\n", event->u.rx.packet->id, event->u.rx.call.node);
+// ->RF00000000-AdamXu
         medium_cs(event->u.rx.packet, &(event->u.rx.call));
 	worldsens_rm_duplicate_pk(event);
         break;
     case PRIORITY_RX_END:
+// <-RF00000000-AdamXu-2018/05/18-add log for noise.
+        PRINT_REPLAY("Scheduler do_event: packet->id=%d, c->node=%d\n", event->u.rx.packet->id, event->u.rx.call.node);
+// ->RF00000000-AdamXu
         medium_rx(event->u.rx.packet, &(event->u.rx.call));
         break;
     case PRIORITY_TX_END:
+// <-RF00000000-AdamXu-2018/05/18-add log for noise.
+        PRINT_REPLAY("Scheduler do_event: packet->id=%d, c->node=%d\n", event->u.rx.packet->id, event->u.rx.call.node);
+// ->RF00000000-AdamXu
         medium_tx_end(event->u.rx.packet, &(event->u.rx.call));
         break;
     case PRIORITY_CALLBACK:
