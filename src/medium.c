@@ -350,8 +350,8 @@ void medium_compute_rxdBm(packet_t *packet, call_t *c) {
 /* ************************************************** */
 // SIC interface on media layer
 /* ************************************************** */
-void Adam_MEDIA_INTERFERENCE_CANCELLATION(call_t *c, int channel) {
+/*void Adam_MEDIA_INTERFERENCE_CANCELLATION(call_t *c, int channel) {
     call_t c0 = {c->from, c->node, -1};
-    //return medium_get_noise(&c0, channel);
-}
+    return medium_get_noise(&c0, channel);
+}*/
 
