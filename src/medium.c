@@ -90,6 +90,11 @@ double MEDIA_GET_NOISE(call_t *c, int channel) {
     return medium_get_noise(&c0, channel);
 }
 
+// <-RF00000000-AdamXu-2018/05/22-add medium layer interface to get white noise.
+double MEDIA_GET_WHITE_NOISE(call_t *c, int channel) {
+    return get_white_noise(c->node, channel);
+}
+// ->RF00000000-AdamXu
 
 void MEDIA_TX(call_t *c, packet_t *packet) {
     int i = get_node_count();

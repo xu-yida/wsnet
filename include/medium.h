@@ -62,5 +62,12 @@ void MEDIA_TX(call_t *c, packet_t *packet);
  **/
 double MEDIA_GET_NOISE(call_t *c, int channel);
 
+/**
+ * \brief Return the radio medium noise on a given channel.
+ * \param c should be {radio id, node id, antenna id}.
+ * \param channel the radio channel we are listening to.
+ * \return the noise strength in dBm.
+ **/
+double MEDIA_GET_WHITE_NOISE(call_t *c, int channel);
 
 #endif //__medium_public__
