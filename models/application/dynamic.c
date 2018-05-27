@@ -155,8 +155,8 @@ int setnode(call_t *c, void *params) {
                     && nodedata->scheme != APP_EVENT_DRV
                     && nodedata->scheme != APP_QUERY_DRV) {
                 nodedata->scheme = APP_TIME_DRV;
-                DBG("%d - Unknown collection scheme, using "
-                    "the time-driven one\n", c->node);
+//                DBG("%d - Unknown collection scheme, using "
+//                    "the time-driven one\n", c->node);
             }
         }
         /* Data sending period for the time-driven scheme. 0 means 
