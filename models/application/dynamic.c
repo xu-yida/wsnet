@@ -155,8 +155,7 @@ int setnode(call_t *c, void *params) {
                     && nodedata->scheme != APP_EVENT_DRV
                     && nodedata->scheme != APP_QUERY_DRV) {
                 nodedata->scheme = APP_TIME_DRV;
-//                DBG("%d - Unknown collection scheme, using "
-//                    "the time-driven one\n", c->node);
+                DBG("%d - Unknown collection scheme, using the time-driven one\n", c->node);
             }
         }
         /* Data sending period for the time-driven scheme. 0 means 
@@ -277,8 +276,7 @@ void switch_time_driven(call_t *c, uint64_t start_time,
     if (nodedata->scheme == APP_TIME_DRV
         && nodedata->tx_period == period
         && nodedata->timer_id != NULL) {
-        DBG("Node %d: nothing to do (no changes in "
-            "mode nor period)\n", c->node);
+        DBG("Node %d: nothing to do (no changes in mode nor period)\n", c->node);
     } else {
         /* Destroy the previous timer if it exists */
         if (nodedata->timer_id != NULL) {
@@ -296,8 +294,7 @@ void switch_time_driven(call_t *c, uint64_t start_time,
              */
             nodedata->start = get_random_time_range(start_time, 
                                 start_time + nodedata->tx_period);
-            DBG("%d - Random start = %"PRId64"ns\n", 
-                c->node, nodedata->start);
+            DBG("%d - Random start = %"PRId64"ns\n", c->node, nodedata->start);
         }
 
         /* Create a new timer */
@@ -368,17 +365,11 @@ void handle_event(call_t *c, int event_value) {
     struct _app_data *nodedata = get_node_private_data(c);    
 
     if (nodedata->scheme != APP_EVENT_DRV) {
-        DBG("Node %d is not in event-driven mode (now in %s mode)\n",
-             c->node, (nodedata->scheme == APP_TIME_DRV) ? 
-             "time-driven":"query-driven");
+        DBG("Node %d is not in event-driven mode (now in %s mode)\n", c->node, (nodedata->scheme == APP_TIME_DRV) ? "time-driven":"query-driven");
     } else if (nodedata->threshold > event_value) {
-        DBG("Node %d is in event-driven mode but threshold "
-            "not exceeded (%d < %d)\n", c->node, 
-            event_value, nodedata->threshold);
+        DBG("Node %d is in event-driven mode but threshold not exceeded (%d < %d)\n", c->node, event_value, nodedata->threshold);
     } else {
-        DBG("Node %d is in event-driven mode and threshold "
-            "exceeded (%d >= %d)\n", c->node, 
-            event_value, nodedata->threshold);
+        DBG("Node %d is in event-driven mode and threshold exceeded (%d >= %d)\n", c->node, event_value, nodedata->threshold);
         /* Threshold is exceeded, report data */
         tx_data(c);
     }
@@ -396,16 +387,14 @@ int ioctl(call_t *c, int option, void *in, void **out) {
         case APP_TIME_DRV:
             // Translate period from msec to nsec
             period = new_value*1000000LLU;
-            DBG("Node %d switching to time-driven mode with "
-                 "period %"PRId64"ns\n", c->node, period);
+            DBG("Node %d switching to time-driven mode with period %"PRId64"ns\n", c->node, period);
             // Switch to time-driven
             switch_time_driven(c, 0 /* start_time is now */, 
                                0 /* end_time is now */, period);
             break;
 
         case APP_EVENT_DRV:
-            DBG("Node %d switching to event-driven mode with "
-                "threshold %d\n", c->node, new_value);
+            DBG("Node %d switching to event-driven mode with threshold %d\n", c->node, new_value);
             // Switch to event-driven
             switch_event_driven(c, new_value);
             break;
@@ -417,27 +406,23 @@ int ioctl(call_t *c, int option, void *in, void **out) {
             break;
 
         case APP_PAYLOAD_SIZE:
-            DBG("Node %d changing payload size from %d to %d Bytes\n",
-                 c->node, nodedata->payload_size, new_value);
+            DBG("Node %d changing payload size from %d to %d Bytes\n", c->node, nodedata->payload_size, new_value);
             nodedata->payload_size = new_value;
             break;
 
         case ENV_EVENT:
-            DBG("Node %d receives an event from the environment with "
-                 "value = %d\n", c->node, new_value);
+            DBG("Node %d receives an event from the environment with value = %d\n", c->node, new_value);
             /* Handle events from the environment */
             handle_event(c, new_value);
             break;
 
         case QUERY_MSG:
-            DBG("Node %d will send a query to node %d\n",
-                c->node, new_value);
+            DBG("Node %d will send a query to node %d\n", c->node, new_value);
             tx_query(c, new_value);
             break;
 
         case CHANGE_APP_DST:
-            DBG("Destination for node %d is now %d\n",
-                c->node, new_value);
+            DBG("Destination for node %d is now %d\n", c->node, new_value);
             nodedata->destination = new_value;
             break;
 
@@ -480,8 +465,7 @@ void tx_data(call_t *c) {
     payload->seq = nodedata->sequence++;
 
     /* Send the packet to the lower layer */
-    DBG("Time %"PRId64" - Node %d sent a msg (seq %d, %d bits)\n",
-         get_time(), c->node, payload->seq, real_size);
+    DBG("Time %"PRId64" - Node %d sent a msg (seq %d, %d bits)\n", get_time(), c->node, payload->seq, real_size);
     TX(&c0, packet);
 }
 
@@ -511,8 +495,7 @@ void tx_query(call_t *c, nodeid_t dst) {
     payload->seq = 0;   // Query type
 
     /* Send the packet to the lower layer */
-    DBG("Time %"PRId64" - Node %d sent a query to node %d\n",
-         get_time(), c->node, dst);
+    DBG("Time %"PRId64" - Node %d sent a query to node %d\n", get_time(), c->node, dst);
     TX(&c0, packet);
 }
 
@@ -524,21 +507,16 @@ void rx(call_t *c, packet_t *packet) {
                                     (packet->data + nodedata->overhead);
     
     if (payload->seq == 0) {
-        DBG("Time %"PRId64" - Node %d received a QUERY...\n",
-            get_time(), c->node);
+        DBG("Time %"PRId64" - Node %d received a QUERY...\n", get_time(), c->node);
 
         if (nodedata->scheme == APP_QUERY_DRV) {
             /* A query was received, send data */
             tx_data(c);
         } else {
-            DBG("... but node %d is not in query-driven mode "
-                "(now in %s mode)\n", c->node, 
-                (nodedata->scheme == APP_TIME_DRV) ? 
-                "time-driven":"event-driven");
+            DBG("... but node %d is not in query-driven mode (now in %s mode)\n", c->node,  (nodedata->scheme == APP_TIME_DRV) ? "time-driven":"event-driven");
         }
     } else {
-        DBG("Time %"PRId64" - Node %d received a msg (seq %d, %d bits)\n",
-             get_time(), c->node, payload->seq, packet->real_size);
+        DBG("Time %"PRId64" - Node %d received a msg (seq %d, %d bits)\n", get_time(), c->node, payload->seq, packet->real_size);
     }
 
     packet_dealloc(packet);
