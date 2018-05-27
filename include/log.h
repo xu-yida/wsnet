@@ -28,7 +28,7 @@
 		fprintf(file, "%s: ", __FUNCTION__); \
 		fprintf(file, x); \
 		fclose(file);\
-	}while(0);
+	}while(0)
 #else
 #define PRINT_REPLAY(x...) printf(x)
 #endif
@@ -50,7 +50,7 @@
 		fprintf(file, "%s: ", __FUNCTION__); \
 		fprintf(file, x); \
 		fclose(file);\
-	}while(0);
+	}while(0)
 #else
 #define PRINT_APPLICATION(x...) printf(x)
 #endif
@@ -72,7 +72,7 @@
 		fprintf(file, "%s: ", __FUNCTION__); \
 		fprintf(file, x); \
 		fclose(file);\
-	}while(0);
+	}while(0)
 #else
 #define PRINT_ROUTING(x...) printf(x)
 #endif
@@ -94,7 +94,7 @@
 		fprintf(file, "%s: ", __FUNCTION__); \
 		fprintf(file, x); \
 		fclose(file);\
-	}while(0);
+	}while(0)
 #else
 #define PRINT_MAC(x...) printf(x)
 #endif
@@ -116,7 +116,7 @@
 		fprintf(file, "%s: ", __FUNCTION__); \
 		fprintf(file, x); \
 		fclose(file);\
-	}while(0);
+	}while(0)
 #else
 #define PRINT_RADIO(x...) printf(x)
 #endif
@@ -138,7 +138,7 @@
 		fprintf(file, "%s: ", __FUNCTION__); \
 		fprintf(file, x); \
 		fclose(file);\
-	}while(0);
+	}while(0)
 #else
 #define PRINT_ANTENNA(x...) printf(x)
 #endif
@@ -160,7 +160,7 @@
 		fprintf(file, "%s: ", __FUNCTION__); \
 		fprintf(file, x); \
 		fclose(file);\
-	}while(0);
+	}while(0)
 #else
 #define PRINT_MOBILITY(x...) printf(x)
 #endif
@@ -182,7 +182,7 @@
 		fprintf(file, "%s: ", __FUNCTION__); \
 		fprintf(file, x); \
 		fclose(file);\
-	}while(0);
+	}while(0)
 #else
 #define PRINT_ENERGY(x...) printf(x)
 #endif
@@ -204,7 +204,7 @@
 		fprintf(file, "%s: ", __FUNCTION__); \
 		fprintf(file, x); \
 		fclose(file);\
-	}while(0);
+	}while(0)
 #else
 #define PRINT_ENVIRONMENT(x...) printf(x)
 #endif
@@ -226,7 +226,7 @@
 		fprintf(file, "%s: ", __FUNCTION__); \
 		fprintf(file, x); \
 		fclose(file);\
-	}while(0);
+	}while(0)
 #else
 #define PRINT_MONITOR(x...) printf(x)
 #endif
@@ -248,7 +248,7 @@
 		fprintf(file, "%s: ", __FUNCTION__); \
 		fprintf(file, x); \
 		fclose(file);\
-	}while(0);
+	}while(0)
 #else
 #define PRINT_MODULATION(x...) printf(x)
 #endif
@@ -270,7 +270,7 @@
 		fprintf(file, "%s: ", __FUNCTION__); \
 		fprintf(file, x); \
 		fclose(file);\
-	}while(0);
+	}while(0)
 #else
 #define PRINT_INTERFERENCES(x...) printf(x)
 #endif
@@ -292,7 +292,7 @@
 		fprintf(file, "%s: ", __FUNCTION__); \
 		fprintf(file, x); \
 		fclose(file);\
-	}while(0);
+	}while(0)
 #else
 #define PRINT_PROPAGATION(x...) printf(x)
 #endif
@@ -315,7 +315,7 @@
 		fprintf(file, "%s: ", __FUNCTION__); \
 		fprintf(file, x); \
 		fclose(file);\
-	}while(0);
+	}while(0)
 #else
 #define PRINT_WORLDSENS(x...) printf(x)
 #endif

@@ -62,6 +62,7 @@ void tx_query(call_t *c, nodeid_t dst);
 
 /* ************************************************** */
 /* ************************************************** */
+#if 1
 #ifdef LOG_APPLICATION
 // <-RF00000000-AdamXu-2018/04/25-write log into files
 #ifdef ADAM_LOG_FILE
@@ -75,7 +76,7 @@ void tx_query(call_t *c, nodeid_t dst);
 		fprintf(file, "%s: ", __FUNCTION__); \
 		fprintf(file, x); \
 		fclose(file);\
-	}while(0);
+	}while(0)
 #else
 #define DBG(x...) printf(x)
 #endif
@@ -83,16 +84,18 @@ void tx_query(call_t *c, nodeid_t dst);
 #else //LOG_APPLICATION
 #define PRINT_APPLICATION(x...) do { } while (0)
 #endif //LOG_APPLICATION
+#else // if1
 // Debug macro
-//#ifdef LOG_APPLICATION
-//#define DBG(arg...)  \
-//do { \
-//    fprintf(stderr, "%s: ", __FUNCTION__); \
-//    fprintf(stderr, arg); \
-//} while (0)
-//#else
-//#define DBG(...)
-//#endif /* LOG_APPLICATION */
+#ifdef LOG_APPLICATION
+#define DBG(arg...)  \
+do { \
+    fprintf(stderr, "%s: ", __FUNCTION__); \
+    fprintf(stderr, arg); \
+} while (0)
+#else
+#define DBG(...)
+#endif /* LOG_APPLICATION */
+#endif // if1
 
 /* ************************************************** */
 /* ************************************************** */
