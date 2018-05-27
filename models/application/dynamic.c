@@ -62,16 +62,37 @@ void tx_query(call_t *c, nodeid_t dst);
 
 /* ************************************************** */
 /* ************************************************** */
-// Debug macro
 #ifdef LOG_APPLICATION
-#define DBG(arg...)  \
-do { \
-    fprintf(stderr, "%s: ", __FUNCTION__); \
-    fprintf(stderr, arg); \
-} while (0)
+// <-RF00000000-AdamXu-2018/04/25-write log into files
+#ifdef ADAM_LOG_FILE
+#define DBG(x...) do{\
+		FILE* file;\
+		if(NULL == (file = fopen(ADAM_LOG_NAME, "a")))\
+		{\
+			printf("Cannot open log file!\n");\
+			break;\
+		}\
+		fprintf(file, "%s: ", __FUNCTION__); \
+		fprintf(file, x); \
+		fclose(file);\
+	}while(0);
 #else
-#define DBG(...)
-#endif /* LOG_APPLICATION */
+#define DBG(x...) printf(x)
+#endif
+// ->RF00000000-AdamXu
+#else //LOG_APPLICATION
+#define PRINT_APPLICATION(x...) do { } while (0)
+#endif //LOG_APPLICATION
+// Debug macro
+//#ifdef LOG_APPLICATION
+//#define DBG(arg...)  \
+//do { \
+//    fprintf(stderr, "%s: ", __FUNCTION__); \
+//    fprintf(stderr, arg); \
+//} while (0)
+//#else
+//#define DBG(...)
+//#endif /* LOG_APPLICATION */
 
 /* ************************************************** */
 /* ************************************************** */

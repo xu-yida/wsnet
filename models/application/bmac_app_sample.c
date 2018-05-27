@@ -259,6 +259,8 @@ void tx(call_t *c) {
 /* ************************************************** */
 /* ************************************************** */
 void rx(call_t *c, packet_t *packet) {
+// <-RF00000000-AdamXu-2018/05/27-fix bug for 'payload not used'.
+#ifdef LOG_APPLICATION
     struct _app_data *nodedata = get_node_private_data(c);
     struct pkt_payload *payload;
 
@@ -268,6 +270,8 @@ void rx(call_t *c, packet_t *packet) {
                       "msg rx (seq %d, values %d %d)\n",
                       get_time(), c->node, payload->seq, 
                       payload->dummy1, payload->dummy2);
+#endif//LOG_APPLICATION
+// ->RF00000000-AdamXu
 
     packet_dealloc(packet);
 }
