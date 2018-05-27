@@ -258,7 +258,7 @@ int dcf_802_11_state_machine(call_t *c, void *args) {
     //  struct _dcf_802_11_ack_header *ack_header;
     uint64_t timeout;
     call_t c0 = {get_entity_bindings_down(c)->elts[0], c->node, c->entity};
-    PRINT_RADIO("B c->node=%d\n", c->node);
+    PRINT_MAC("B c->node=%d\n", c->node);
     
     /* Drop unscheduled events */
     if (nodedata->clock != get_time()) {
@@ -512,7 +512,7 @@ int dcf_802_11_state_machine(call_t *c, void *args) {
 /* ************************************************** */
 void tx(call_t *c, packet_t *packet) {
     struct nodedata *nodedata = get_node_private_data(c);
-    PRINT_RADIO("B packet->id=%d, c->node=%d\n", packet->id, c->node);
+    PRINT_MAC("B packet->id=%d, c->node=%d\n", packet->id, c->node);
     
     das_insert(nodedata->packets, (void*)packet);
 
@@ -534,7 +534,7 @@ void rx(call_t *c, packet_t *packet) {
     // struct _dcf_802_11_ack_header *ack_header;
     array_t *up = get_entity_bindings_up(c);
     int i = up->size;
-    PRINT_RADIO("B packet->id=%d, c->node=%d\n", packet->id, c->node);
+    PRINT_MAC("B packet->id=%d, c->node=%d\n", packet->id, c->node);
 
     switch (header->type) {
 		
