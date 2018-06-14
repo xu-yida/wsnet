@@ -23,10 +23,6 @@ entityid_t get_entityid_by_name(char *name) {
 }
 
 entity_t *get_entity_by_id(entityid_t id) {
-	// <-RF00000000-AdamXu-2018/05/30-add log for entity type.
-	//entity_t *entity = entities.elts + id;
-	//PRINT_MAC("B: entity->model->type=%d", entity->model->type);
-	// ->RF00000000-AdamXu
     return entities.elts + id;
 }
  

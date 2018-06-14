@@ -258,7 +258,9 @@ int dcf_802_11_state_machine(call_t *c, void *args) {
     //  struct _dcf_802_11_ack_header *ack_header;
     uint64_t timeout;
     call_t c0 = {get_entity_bindings_down(c)->elts[0], c->node, c->entity};
-    PRINT_MAC("B c->node=%d\n", c->node);
+// <-RF00000000-AdamXu-2018/06/14-add log to point state order.
+    PRINT_MAC("B c->node=%d, nodedata->state\n", c->node, nodedata->state);
+// ->RF00000000-AdamXu
     
     /* Drop unscheduled events */
     if (nodedata->clock != get_time()) {
