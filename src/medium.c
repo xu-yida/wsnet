@@ -100,6 +100,10 @@ void MEDIA_TX(call_t *c, packet_t *packet) {
     int i = get_node_count();
     node_t *node = get_node_by_id(c->node);
     uint64_t clock;
+	// <-RF00000000-AdamXu-2018/06/20-add model type log.
+	entity_t *entity = get_entity_by_id(c->entity);
+	PRINT_MAC("B: entity->model->type=%d\n", entity->model->type);
+	// ->RF00000000-AdamXu
     
     /* check wether node is active */
     if (node->state != NODE_ACTIVE) {
