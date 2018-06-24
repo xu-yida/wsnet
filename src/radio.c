@@ -11,9 +11,6 @@
 /* ************************************************** */
 double radio_get_noise(call_t *c) {
     entity_t *entity = get_entity_by_id(c->entity);
-	// <-RF00000000-AdamXu-2018/06/24-add log for sic channel check.
-	PRINT_RADIO("B: entity->model->type=%d\n", entity->model->type);
-	// ->RF00000000-AdamXu
     if (entity->model->type != MODELTYPE_RADIO)
         return MIN_DBM;
     return entity->methods->radio.get_noise(c);    
@@ -21,9 +18,6 @@ double radio_get_noise(call_t *c) {
 
 double radio_get_cs(call_t *c) {
     entity_t *entity = get_entity_by_id(c->entity);
-	// <-RF00000000-AdamXu-2018/06/24-add log for sic channel check.
-	PRINT_RADIO("B: entity->model->type=%d\n", entity->model->type);
-	// ->RF00000000-AdamXu
     if (entity->model->type != MODELTYPE_RADIO)
         return MIN_DBM;
     return entity->methods->radio.get_cs(c);    
