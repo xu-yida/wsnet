@@ -540,7 +540,7 @@ double medium_get_noise(call_t *c, int channel) {
     double value = 0;
 
 	// <-RF00000000-AdamXu-2018/06/24-add log for sic channel check.
-	PRINT_RADIO("noise->current!=NULL?%d", noise->current!=NULL);
+	PRINT_RADIO("noise->current!=NULL?%d\n", noise->current!=NULL);
 	// ->RF00000000-AdamXu
     /* deterministic noise */
     noise_update_current(noise, time);
@@ -555,7 +555,7 @@ double medium_get_noise(call_t *c, int channel) {
         value += get_white_noise(c->node, channel);
     }
 	// <-RF00000000-AdamXu-2018/06/24-add log for sic channel check.
-	PRINT_RADIO("value=%d", value);
+	PRINT_RADIO("value=%f\n", value);
 	// ->RF00000000-AdamXu
     
     /* convert to dBm */
