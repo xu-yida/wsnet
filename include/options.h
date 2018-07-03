@@ -30,7 +30,7 @@
 /* ************************************************** */
 //#define LOG_REPLAY
 //#define LOG_APPLICATION
-//#define LOG_ROUTING
+#define LOG_ROUTING
 #define LOG_MAC
 #define LOG_RADIO
 //#define LOG_ANTENNA
