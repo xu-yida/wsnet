@@ -104,7 +104,7 @@ int parse_simulation(xmlNodeSetPtr nodeset) {
             /* xsd: 1 <= @nodes <= 65535 */
             nodes.size = strtoll((char *) attr->children->content, NULL, 10);
 			// <-RF00000000-AdamXu-2018/07/04-test nodes number.
-			PRINT_ROUTING('nodes.size=%d\n', nodes.size);
+			PRINT_ROUTING("nodes.size=%d\n", nodes.size);
 			// ->RF00000000-AdamXu
         } else if (! strcmp((char *) attr->name, XML_A_DURATION)) {
             /* xsd: 0 <= @duration */
