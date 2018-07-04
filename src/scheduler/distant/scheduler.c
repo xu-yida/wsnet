@@ -435,9 +435,6 @@ void end_simulation(void) {
 void scheduler_add_birth(uint64_t clock, nodeid_t id) {
     event_t *event;
 
-			// <-RF00000000-AdamXu-2018/07/04-test nodes number.
-			PRINT_ROUTING("id=%d\n", id);
-			// ->RF00000000-AdamXu
     if ((event = (event_t *) mem_fs_alloc(mem_event)) == NULL) {
         return;
     }
