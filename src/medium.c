@@ -122,6 +122,11 @@ void MEDIA_TX(call_t *c, packet_t *packet) {
 	/* end of edition */
 	packet->clock0 = get_time();
 	packet->clock1 = packet->clock0 + packet->duration;
+	// <-RF00000000-AdamXu-2018/07/06-add log for sic.
+	PRINT_RADIO("packet->id=%d, c->node=%d\n", packet->id, c->node);
+	PRINT_RADIO("packet->clock0=%"PRId64"\n", packet->clock0);
+	PRINT_RADIO("packet->clock1=%"PRId64"\n", packet->clock1);
+	// ->RF00000000-AdamXu
 
 	/* scheduler tx_end event */
 	scheduler_add_tx_end(packet->clock1, c, packet);
