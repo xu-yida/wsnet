@@ -8,6 +8,9 @@
 
 #include <include/modelutils.h>
 
+// <-RF00000000-AdamXu-2018/07/06-test sic.
+#define ADAM_TEST
+// ->RF00000000-AdamXu
 
 /* ************************************************** */
 /* ************************************************** */
@@ -128,7 +131,13 @@ int bootstrap(call_t *c) {
     struct _cbr_private *nodedata = get_node_private_data(c);
     array_t *down = get_entity_bindings_down(c);
     call_t c0 = {down->elts[0], c->node, c->entity};
+// <-RF00000000-AdamXu-2018/07/06-test sic.
+#ifdef ADAM_TEST
+    uint64_t start = get_time() + nodedata->start + nodedata->period;
+#else
     uint64_t start = get_time() + nodedata->start + get_random_double() * nodedata->period;
+#endif
+// ->RF00000000-AdamXu
   
     /* get overhead */
     nodedata->overhead = GET_HEADER_SIZE(&c0);
