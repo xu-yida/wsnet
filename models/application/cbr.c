@@ -177,6 +177,12 @@ void tx(call_t *c) {
                                   nodedata->position.y, 
                                   nodedata->position.z}};
         
+// <-RF00000000-AdamXu-2018/07/06-test sic.
+#ifdef ADAM_TEST
+	PRINT_RADIO("application B: packet->id=%d, c->node=%d\n", packet->id, c->node);
+	PRINT_ROUTING("get_time()=%"PRId64"\n", get_time();
+#endif
+// ->RF00000000-AdamXu
     if (SET_HEADER(&c0, packet, &destination) == -1) {
         packet_dealloc(packet);
         return;
