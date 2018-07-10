@@ -181,6 +181,7 @@ void tx(call_t *c) {
 #ifdef ADAM_TEST
 	PRINT_RADIO("application B: packet->id=%d, c->node=%d, destination.id=%d\n", packet->id, c->node, destination.id);
 	PRINT_ROUTING("get_time()=%"PRId64"\n", get_time());
+	printf("[CBR] node %d transmitted a data packet : desination id=%d  \n", c->node, destination.id);
 #endif
 // ->RF00000000-AdamXu
     if (SET_HEADER(&c0, packet, &destination) == -1) {
