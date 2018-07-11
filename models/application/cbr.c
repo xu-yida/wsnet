@@ -9,7 +9,7 @@
 #include <include/modelutils.h>
 
 // <-RF00000000-AdamXu-2018/07/06-test sic.
-#define ADAM_TEST
+//#define ADAM_TEST
 // ->RF00000000-AdamXu
 
 /* ************************************************** */
