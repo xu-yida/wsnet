@@ -90,30 +90,56 @@ int do_parse(int argc, char *argv[]) {
     return 0;
 }
 
+// <-RF00000000-AdamXu-2018/04/25-write log into files
+#ifdef ADAM_LOG_FILE
+int	adam_log_init()
+{
+	int error_code = 0;
+	if(NULL == (g_p_file = fopen(ADAM_LOG_NAME, "a")))
+	{
+		printf("Cannot open log file!\n");
+		error_code = -1;
+	}
+	return error_code;
+}
+
+void	adam_log_clean()
+{
+	fclose(g_p_file);
+	g_p_file = NULL;
+}
+#endif
+// ->RF00000000-AdamXu
 
 /* ************************************************** */
 /* ************************************************** */
 int do_init(void) {
-    if (das_init()             ||  /* das        */
-	sodas_init()           ||  /* sodas      */
-	spadas_init()          ||  /* spadas     */
-	hadas_init()           ||  /* hadas      */
-	rng_init()             ||  /* rng        */
-	timer_init()           ||  /* timer      */
-	bundle_init()          ||  /* bundle     */
-	entity_init()          ||  /* entity     */
-	monitor_init()         ||  /* monitor    */
-	measure_init()         ||  /* mesure     */
-	medium_init()          ||  /* medium     */
-	mobility_init()        ||  /* mobility   */
-	modulation_init()      ||  /* modulation */
-	noise_init()           ||  /* noise      */
-	node_init()            ||  /* node       */
-	packet_init()          ||  /* packet     */
-	scheduler_init()) {        /* scheduler  */
-        return -1;
-    }
-    return 0;
+	if (
+// <-RF00000000-AdamXu-2018/04/25-write log into files
+#ifdef ADAM_LOG_FILE
+		adam_log_init() || /* log */
+#endif
+// ->RF00000000-AdamXu
+		das_init()             ||  /* das        */
+		sodas_init()           ||  /* sodas      */
+		spadas_init()          ||  /* spadas     */
+		hadas_init()           ||  /* hadas      */
+		rng_init()             ||  /* rng        */
+		timer_init()           ||  /* timer      */
+		bundle_init()          ||  /* bundle     */
+		entity_init()          ||  /* entity     */
+		monitor_init()         ||  /* monitor    */
+		measure_init()         ||  /* mesure     */
+		medium_init()          ||  /* medium     */
+		mobility_init()        ||  /* mobility   */
+		modulation_init()      ||  /* modulation */
+		noise_init()           ||  /* noise      */
+		node_init()            ||  /* node       */
+		packet_init()          ||  /* packet     */
+		scheduler_init()) {        /* scheduler  */
+		return -1;
+	}
+	return 0;
 }
 
 
@@ -141,18 +167,23 @@ int do_bootstrap(void) {
 /* ************************************************** */
 /* ************************************************** */
 void do_clean(void) {
-    rng_clean();                   /* rng        */
-    scheduler_clean();             /* scheduler  */
-    packet_clean();                /* packet     */
-    noise_clean();                 /* noise      */
-    node_clean();                  /* node       */
-    modulation_clean();            /* modulation */
-    mobility_clean();              /* mobility   */
-    medium_clean();                /* medium     */
-    measure_clean();               /* measure    */
-    monitor_clean();               /* monitor    */
-    entity_clean();                /* entity     */
-    bundle_clean();                /* bundler    */
-    timer_clean();                 /* timer      */
-    mem_fs_clean();                /* mem_fs     */
+// <-RF00000000-AdamXu-2018/04/25-write log into files
+#ifdef ADAM_LOG_FILE
+	adam_log_clean() || /* log */
+#endif
+// ->RF00000000-AdamXu
+	rng_clean();                   /* rng        */
+	scheduler_clean();             /* scheduler  */
+	packet_clean();                /* packet     */
+	noise_clean();                 /* noise      */
+	node_clean();                  /* node       */
+	modulation_clean();            /* modulation */
+	mobility_clean();              /* mobility   */
+	medium_clean();                /* medium     */
+	measure_clean();               /* measure    */
+	monitor_clean();               /* monitor    */
+	entity_clean();                /* entity     */
+	bundle_clean();                /* bundler    */
+	timer_clean();                 /* timer      */
+	mem_fs_clean();                /* mem_fs     */
 }
