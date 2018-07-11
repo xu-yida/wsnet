@@ -43,15 +43,8 @@ FILE* g_p_file;
 // <-RF00000000-AdamXu-2018/04/25-write log into files
 #ifdef ADAM_LOG_FILE
 #define PRINT_APPLICATION(x...) do{\
-//		FILE* file;\
-//		if(NULL == (file = fopen(ADAM_LOG_NAME, "a")))\
-//		{\
-//			printf("Cannot open log file!\n");\
-//			break;\
-//		}\
 		fprintf(g_p_file, "%s: ", __FUNCTION__); \
 		fprintf(g_p_file, x); \
-//		fclose(file);\
 	}while(0)
 #else
 #define PRINT_APPLICATION(x...) printf(x)
