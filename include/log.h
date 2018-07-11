@@ -23,7 +23,7 @@ FILE* g_p_file;
 #define PRINT_REPLAY(x...) do{\
 		if(NULL != g_p_file)\
 		{\
-			fprintf(g_p_file, "%s: ", __FUNCTION__); \
+			fprintf(g_p_file, "%s, %s: ", __FILE__, __FUNCTION__); \
 			fprintf(g_p_file, x); \
 		}\
 	}while(0)
@@ -41,7 +41,7 @@ FILE* g_p_file;
 #define PRINT_APPLICATION(x...) do{\
 		if(NULL != g_p_file)\
 		{\
-			fprintf(g_p_file, "%s: ", __FUNCTION__); \
+			fprintf(g_p_file, "%s, %s: ", __FILE__, __FUNCTION__); \
 			fprintf(g_p_file, x); \
 		}\
 	}while(0)
@@ -59,7 +59,7 @@ FILE* g_p_file;
 #define PRINT_ROUTING(x...) do{\
 		if(NULL != g_p_file)\
 		{\
-			fprintf(g_p_file, "%s: ", __FUNCTION__); \
+			fprintf(g_p_file, "%s, %s: ", __FILE__, __FUNCTION__); \
 			fprintf(g_p_file, x); \
 		}\
 	}while(0)
@@ -77,7 +77,7 @@ FILE* g_p_file;
 #define PRINT_MAC(x...) do{\
 		if(NULL != g_p_file)\
 		{\
-			fprintf(g_p_file, "%s: ", __FUNCTION__); \
+			fprintf(g_p_file, "%s, %s: ", __FILE__, __FUNCTION__); \
 			fprintf(g_p_file, x); \
 		}\
 	}while(0)
@@ -95,7 +95,7 @@ FILE* g_p_file;
 #define PRINT_RADIO(x...) do{\
 		if(NULL != g_p_file)\
 		{\
-			fprintf(g_p_file, "%s: ", __FUNCTION__); \
+			fprintf(g_p_file, "%s, %s: ", __FILE__, __FUNCTION__); \
 			fprintf(g_p_file, x); \
 		}\
 	}while(0)
@@ -113,7 +113,7 @@ FILE* g_p_file;
 #define PRINT_ANTENNA(x...) do{\
 		if(NULL != g_p_file)\
 		{\
-			fprintf(g_p_file, "%s: ", __FUNCTION__); \
+			fprintf(g_p_file, "%s, %s: ", __FILE__, __FUNCTION__); \
 			fprintf(g_p_file, x); \
 		}\
 	}while(0)
@@ -131,7 +131,7 @@ FILE* g_p_file;
 #define PRINT_MOBILITY(x...) do{\
 		if(NULL != g_p_file)\
 		{\
-			fprintf(g_p_file, "%s: ", __FUNCTION__); \
+			fprintf(g_p_file, "%s, %s: ", __FILE__, __FUNCTION__); \
 			fprintf(g_p_file, x); \
 		}\
 	}while(0)
@@ -149,7 +149,7 @@ FILE* g_p_file;
 #define PRINT_ENERGY(x...) do{\
 		if(NULL != g_p_file)\
 		{\
-			fprintf(g_p_file, "%s: ", __FUNCTION__); \
+			fprintf(g_p_file, "%s, %s: ", __FILE__, __FUNCTION__); \
 			fprintf(g_p_file, x); \
 		}\
 	}while(0)
@@ -167,7 +167,7 @@ FILE* g_p_file;
 #define PRINT_ENVIRONMENT(x...) do{\
 		if(NULL != g_p_file)\
 		{\
-			fprintf(g_p_file, "%s: ", __FUNCTION__); \
+			fprintf(g_p_file, "%s, %s: ", __FILE__, __FUNCTION__); \
 			fprintf(g_p_file, x); \
 		}\
 	}while(0)
@@ -185,7 +185,7 @@ FILE* g_p_file;
 #define PRINT_MONITOR(x...) do{\
 		if(NULL != g_p_file)\
 		{\
-			fprintf(g_p_file, "%s: ", __FUNCTION__); \
+			fprintf(g_p_file, "%s, %s: ", __FILE__, __FUNCTION__); \
 			fprintf(g_p_file, x); \
 		}\
 	}while(0)
@@ -203,7 +203,7 @@ FILE* g_p_file;
 #define PRINT_MODULATION(x...) do{\
 		if(NULL != g_p_file)\
 		{\
-			fprintf(g_p_file, "%s: ", __FUNCTION__); \
+			fprintf(g_p_file, "%s, %s: ", __FILE__, __FUNCTION__); \
 			fprintf(g_p_file, x); \
 		}\
 	}while(0)
@@ -221,7 +221,7 @@ FILE* g_p_file;
 #define PRINT_INTERFERENCES(x...) do{\
 		if(NULL != g_p_file)\
 		{\
-			fprintf(g_p_file, "%s: ", __FUNCTION__); \
+			fprintf(g_p_file, "%s, %s: ", __FILE__, __FUNCTION__); \
 			fprintf(g_p_file, x); \
 		}\
 	}while(0)
@@ -239,7 +239,7 @@ FILE* g_p_file;
 #define PRINT_PROPAGATION(x...) do{\
 		if(NULL != g_p_file)\
 		{\
-			fprintf(g_p_file, "%s: ", __FUNCTION__); \
+			fprintf(g_p_file, "%s, %s: ", __FILE__, __FUNCTION__); \
 			fprintf(g_p_file, x); \
 		}\
 	}while(0)
@@ -258,7 +258,7 @@ FILE* g_p_file;
 #define PRINT_WORLDSENS(x...) do{\
 		if(NULL != g_p_file)\
 		{\
-			fprintf(g_p_file, "%s: ", __FUNCTION__); \
+			fprintf(g_p_file, "%s, %s: ", __FILE__, __FUNCTION__); \
 			fprintf(g_p_file, x); \
 		}\
 	}while(0)
