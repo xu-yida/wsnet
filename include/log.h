@@ -12,7 +12,7 @@
 #ifdef ADAM_LOG_FILE
 #include <stdio.h>
 
-FILE* g_p_file;
+FILE* g_p_file = NULL;
 #endif
 // ->RF00000000-AdamXu
 
@@ -21,15 +21,11 @@ FILE* g_p_file;
 // <-RF00000000-AdamXu-2018/04/25-write log into files
 #ifdef ADAM_LOG_FILE
 #define PRINT_REPLAY(x...) do{\
-		FILE* file;\
-		if(NULL == (file = fopen(ADAM_LOG_NAME, "a")))\
+		if(NULL != g_p_file)\
 		{\
-			printf("Cannot open log file!\n");\
-			break;\
+			fprintf(g_p_file, "%s: ", __FUNCTION__); \
+			fprintf(g_p_file, x); \
 		}\
-		fprintf(file, "%s: ", __FUNCTION__); \
-		fprintf(file, x); \
-		fclose(file);\
 	}while(0)
 #else
 #define PRINT_REPLAY(x...) printf(x)
@@ -43,8 +39,11 @@ FILE* g_p_file;
 // <-RF00000000-AdamXu-2018/04/25-write log into files
 #ifdef ADAM_LOG_FILE
 #define PRINT_APPLICATION(x...) do{\
-		fprintf(g_p_file, "%s: ", __FUNCTION__); \
-		fprintf(g_p_file, x); \
+		if(NULL != g_p_file)\
+		{\
+			fprintf(g_p_file, "%s: ", __FUNCTION__); \
+			fprintf(g_p_file, x); \
+		}\
 	}while(0)
 #else
 #define PRINT_APPLICATION(x...) printf(x)
@@ -58,15 +57,11 @@ FILE* g_p_file;
 // <-RF00000000-AdamXu-2018/04/25-write log into files
 #ifdef ADAM_LOG_FILE
 #define PRINT_ROUTING(x...) do{\
-		FILE* file;\
-		if(NULL == (file = fopen(ADAM_LOG_NAME, "a")))\
+		if(NULL != g_p_file)\
 		{\
-			printf("Cannot open log file!\n");\
-			break;\
+			fprintf(g_p_file, "%s: ", __FUNCTION__); \
+			fprintf(g_p_file, x); \
 		}\
-		fprintf(file, "%s: ", __FUNCTION__); \
-		fprintf(file, x); \
-		fclose(file);\
 	}while(0)
 #else
 #define PRINT_ROUTING(x...) printf(x)
@@ -80,15 +75,11 @@ FILE* g_p_file;
 // <-RF00000000-AdamXu-2018/04/25-write log into files
 #ifdef ADAM_LOG_FILE
 #define PRINT_MAC(x...) do{\
-		FILE* file;\
-		if(NULL == (file = fopen(ADAM_LOG_NAME, "a")))\
+		if(NULL != g_p_file)\
 		{\
-			printf("Cannot open log file!\n");\
-			break;\
+			fprintf(g_p_file, "%s: ", __FUNCTION__); \
+			fprintf(g_p_file, x); \
 		}\
-		fprintf(file, "%s: ", __FUNCTION__); \
-		fprintf(file, x); \
-		fclose(file);\
 	}while(0)
 #else
 #define PRINT_MAC(x...) printf(x)
@@ -102,15 +93,11 @@ FILE* g_p_file;
 // <-RF00000000-AdamXu-2018/04/25-write log into files
 #ifdef ADAM_LOG_FILE
 #define PRINT_RADIO(x...) do{\
-		FILE* file;\
-		if(NULL == (file = fopen(ADAM_LOG_NAME, "a")))\
+		if(NULL != g_p_file)\
 		{\
-			printf("Cannot open log file!\n");\
-			break;\
+			fprintf(g_p_file, "%s: ", __FUNCTION__); \
+			fprintf(g_p_file, x); \
 		}\
-		fprintf(file, "%s: ", __FUNCTION__); \
-		fprintf(file, x); \
-		fclose(file);\
 	}while(0)
 #else
 #define PRINT_RADIO(x...) printf(x)
@@ -124,15 +111,11 @@ FILE* g_p_file;
 // <-RF00000000-AdamXu-2018/04/25-write log into files
 #ifdef ADAM_LOG_FILE
 #define PRINT_ANTENNA(x...) do{\
-		FILE* file;\
-		if(NULL == (file = fopen(ADAM_LOG_NAME, "a")))\
+		if(NULL != g_p_file)\
 		{\
-			printf("Cannot open log file!\n");\
-			break;\
+			fprintf(g_p_file, "%s: ", __FUNCTION__); \
+			fprintf(g_p_file, x); \
 		}\
-		fprintf(file, "%s: ", __FUNCTION__); \
-		fprintf(file, x); \
-		fclose(file);\
 	}while(0)
 #else
 #define PRINT_ANTENNA(x...) printf(x)
@@ -146,15 +129,11 @@ FILE* g_p_file;
 // <-RF00000000-AdamXu-2018/04/25-write log into files
 #ifdef ADAM_LOG_FILE
 #define PRINT_MOBILITY(x...) do{\
-		FILE* file;\
-		if(NULL == (file = fopen(ADAM_LOG_NAME, "a")))\
+		if(NULL != g_p_file)\
 		{\
-			printf("Cannot open log file!\n");\
-			break;\
+			fprintf(g_p_file, "%s: ", __FUNCTION__); \
+			fprintf(g_p_file, x); \
 		}\
-		fprintf(file, "%s: ", __FUNCTION__); \
-		fprintf(file, x); \
-		fclose(file);\
 	}while(0)
 #else
 #define PRINT_MOBILITY(x...) printf(x)
@@ -168,15 +147,11 @@ FILE* g_p_file;
 // <-RF00000000-AdamXu-2018/04/25-write log into files
 #ifdef ADAM_LOG_FILE
 #define PRINT_ENERGY(x...) do{\
-		FILE* file;\
-		if(NULL == (file = fopen(ADAM_LOG_NAME, "a")))\
+		if(NULL != g_p_file)\
 		{\
-			printf("Cannot open log file!\n");\
-			break;\
+			fprintf(g_p_file, "%s: ", __FUNCTION__); \
+			fprintf(g_p_file, x); \
 		}\
-		fprintf(file, "%s: ", __FUNCTION__); \
-		fprintf(file, x); \
-		fclose(file);\
 	}while(0)
 #else
 #define PRINT_ENERGY(x...) printf(x)
@@ -190,15 +165,11 @@ FILE* g_p_file;
 // <-RF00000000-AdamXu-2018/04/25-write log into files
 #ifdef ADAM_LOG_FILE
 #define PRINT_ENVIRONMENT(x...) do{\
-		FILE* file;\
-		if(NULL == (file = fopen(ADAM_LOG_NAME, "a")))\
+		if(NULL != g_p_file)\
 		{\
-			printf("Cannot open log file!\n");\
-			break;\
+			fprintf(g_p_file, "%s: ", __FUNCTION__); \
+			fprintf(g_p_file, x); \
 		}\
-		fprintf(file, "%s: ", __FUNCTION__); \
-		fprintf(file, x); \
-		fclose(file);\
 	}while(0)
 #else
 #define PRINT_ENVIRONMENT(x...) printf(x)
@@ -212,15 +183,11 @@ FILE* g_p_file;
 // <-RF00000000-AdamXu-2018/04/25-write log into files
 #ifdef ADAM_LOG_FILE
 #define PRINT_MONITOR(x...) do{\
-		FILE* file;\
-		if(NULL == (file = fopen(ADAM_LOG_NAME, "a")))\
+		if(NULL != g_p_file)\
 		{\
-			printf("Cannot open log file!\n");\
-			break;\
+			fprintf(g_p_file, "%s: ", __FUNCTION__); \
+			fprintf(g_p_file, x); \
 		}\
-		fprintf(file, "%s: ", __FUNCTION__); \
-		fprintf(file, x); \
-		fclose(file);\
 	}while(0)
 #else
 #define PRINT_MONITOR(x...) printf(x)
@@ -234,15 +201,11 @@ FILE* g_p_file;
 // <-RF00000000-AdamXu-2018/04/25-write log into files
 #ifdef ADAM_LOG_FILE
 #define PRINT_MODULATION(x...) do{\
-		FILE* file;\
-		if(NULL == (file = fopen(ADAM_LOG_NAME, "a")))\
+		if(NULL != g_p_file)\
 		{\
-			printf("Cannot open log file!\n");\
-			break;\
+			fprintf(g_p_file, "%s: ", __FUNCTION__); \
+			fprintf(g_p_file, x); \
 		}\
-		fprintf(file, "%s: ", __FUNCTION__); \
-		fprintf(file, x); \
-		fclose(file);\
 	}while(0)
 #else
 #define PRINT_MODULATION(x...) printf(x)
@@ -256,15 +219,11 @@ FILE* g_p_file;
 // <-RF00000000-AdamXu-2018/04/25-write log into files
 #ifdef ADAM_LOG_FILE
 #define PRINT_INTERFERENCES(x...) do{\
-		FILE* file;\
-		if(NULL == (file = fopen(ADAM_LOG_NAME, "a")))\
+		if(NULL != g_p_file)\
 		{\
-			printf("Cannot open log file!\n");\
-			break;\
+			fprintf(g_p_file, "%s: ", __FUNCTION__); \
+			fprintf(g_p_file, x); \
 		}\
-		fprintf(file, "%s: ", __FUNCTION__); \
-		fprintf(file, x); \
-		fclose(file);\
 	}while(0)
 #else
 #define PRINT_INTERFERENCES(x...) printf(x)
@@ -278,15 +237,11 @@ FILE* g_p_file;
 // <-RF00000000-AdamXu-2018/04/25-write log into files
 #ifdef ADAM_LOG_FILE
 #define PRINT_PROPAGATION(x...) do{\
-		FILE* file;\
-		if(NULL == (file = fopen(ADAM_LOG_NAME, "a")))\
+		if(NULL != g_p_file)\
 		{\
-			printf("Cannot open log file!\n");\
-			break;\
+			fprintf(g_p_file, "%s: ", __FUNCTION__); \
+			fprintf(g_p_file, x); \
 		}\
-		fprintf(file, "%s: ", __FUNCTION__); \
-		fprintf(file, x); \
-		fclose(file);\
 	}while(0)
 #else
 #define PRINT_PROPAGATION(x...) printf(x)
@@ -301,15 +256,11 @@ FILE* g_p_file;
 // <-RF00000000-AdamXu-2018/04/25-write log into files
 #ifdef ADAM_LOG_FILE
 #define PRINT_WORLDSENS(x...) do{\
-		FILE* file;\
-		if(NULL == (file = fopen(ADAM_LOG_NAME, "a")))\
+		if(NULL != g_p_file)\
 		{\
-			printf("Cannot open log file!\n");\
-			break;\
+			fprintf(g_p_file, "%s: ", __FUNCTION__); \
+			fprintf(g_p_file, x); \
 		}\
-		fprintf(file, "%s: ", __FUNCTION__); \
-		fprintf(file, x); \
-		fclose(file);\
 	}while(0)
 #else
 #define PRINT_WORLDSENS(x...) printf(x)
