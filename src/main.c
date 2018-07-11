@@ -169,7 +169,7 @@ int do_bootstrap(void) {
 void do_clean(void) {
 // <-RF00000000-AdamXu-2018/04/25-write log into files
 #ifdef ADAM_LOG_FILE
-	adam_log_clean() || /* log */
+	adam_log_clean(); /* log */
 #endif
 // ->RF00000000-AdamXu
 	rng_clean();                   /* rng        */
