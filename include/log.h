@@ -12,7 +12,7 @@
 #ifdef ADAM_LOG_FILE
 #include <stdio.h>
 
-FILE* g_p_file = NULL;
+FILE* g_p_file;
 #endif
 // ->RF00000000-AdamXu
 
