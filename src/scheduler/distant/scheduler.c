@@ -1100,6 +1100,9 @@ static void worldsens_rx_sync_ack(struct _worldsens_c_sync_ack *pkt) {
 static void worldsens_rx_disconnect(struct _worldsens_c_disconnect *pkt) {
     node_t *node = get_node_by_id(worldsens_get_wsnet_node_id(pkt->node_id));
 
+	// <-RF00000000-AdamXu-2018/07/12-add log for kill node.
+	PRINT_REPLAY("B\n");
+	// ->RF00000000-AdamXu
     if (node->worldsens != NODE_CONNECTED) {
         return;
     }

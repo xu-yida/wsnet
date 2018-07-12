@@ -108,6 +108,9 @@ int ioctl(call_t *c, int option, void *in, void **out) {
 /* ************************************************** */
 void consume_tx(call_t *c, uint64_t duration, double txdBm) {
     struct nodedata *nodedata = get_node_private_data(c);
+	// <-RF00000000-AdamXu-2018/07/12-add log for kill node.
+	PRINT_REPLAY("B\n");
+	// ->RF00000000-AdamXu
     nodedata->energy -= duration * nodedata->tx; 
     if (nodedata->energy <= 0) {
         nodedata->energy = 0;
@@ -118,6 +121,9 @@ void consume_tx(call_t *c, uint64_t duration, double txdBm) {
 
 void consume_rx(call_t *c, uint64_t duration) {
     struct nodedata *nodedata = get_node_private_data(c);
+	// <-RF00000000-AdamXu-2018/07/12-add log for kill node.
+	PRINT_REPLAY("B\n");
+	// ->RF00000000-AdamXu
     nodedata->energy -= duration * nodedata->rx; 
     if (nodedata->energy <= 0) {
         nodedata->energy = 0;
@@ -128,6 +134,9 @@ void consume_rx(call_t *c, uint64_t duration) {
 
 void consume_idle(call_t *c, uint64_t duration) {
     struct nodedata *nodedata = get_node_private_data(c);
+	// <-RF00000000-AdamXu-2018/07/12-add log for kill node.
+	PRINT_REPLAY("B\n");
+	// ->RF00000000-AdamXu
     nodedata->energy -= duration * nodedata->idle; 
     if (nodedata->energy <= 0) {
         nodedata->energy = 0;
@@ -138,6 +147,9 @@ void consume_idle(call_t *c, uint64_t duration) {
 
 void consume(call_t *c, double energy) {
     struct nodedata *nodedata = get_node_private_data(c);
+	// <-RF00000000-AdamXu-2018/07/12-add log for kill node.
+	PRINT_REPLAY("B\n");
+	// ->RF00000000-AdamXu
     nodedata->energy -= energy; 
     if (nodedata->energy <= 0) {
         nodedata->energy = 0;
