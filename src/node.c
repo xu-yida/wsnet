@@ -158,9 +158,6 @@ void node_kill(nodeid_t id) {
     node_t *node = get_node_by_id(id);
     int i;
 
-	// <-RF00000000-AdamXu-2018/07/12-add log for kill node.
-	PRINT_REPLAY("B\n");
-	// ->RF00000000-AdamXu
     if (node->state == NODE_DEAD) {
         return;
     }
