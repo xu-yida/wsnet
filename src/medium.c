@@ -123,9 +123,9 @@ void MEDIA_TX(call_t *c, packet_t *packet) {
 	packet->clock0 = get_time();
 	packet->clock1 = packet->clock0 + packet->duration;
 	// <-RF00000000-AdamXu-2018/07/06-add log for sic.
-	PRINT_RADIO("packet->id=%d, c->node=%d\n", packet->id, c->node);
-	PRINT_RADIO("packet->clock0=%"PRId64"\n", packet->clock0);
-	PRINT_RADIO("packet->clock1=%"PRId64"\n", packet->clock1);
+	PRINT_REPLAY("packet->id=%d, c->node=%d\n", packet->id, c->node);
+	PRINT_REPLAY("packet->clock0=%"PRId64"\n", packet->clock0);
+	PRINT_REPLAY("packet->clock1=%"PRId64"\n", packet->clock1);
 	// ->RF00000000-AdamXu
 
 	/* scheduler tx_end event */
@@ -168,6 +168,9 @@ void MEDIA_TX(call_t *c, packet_t *packet) {
             bundle_t *bundle = get_bundle_by_id(rx_node->bundle);
             int i;
             
+		// <-RF00000000-AdamXu-2018/07/06-add log for sic.
+		PRINT_REPLAY("rx_node->id=%d, rx_node->state=%d\n", rx_node->id, rx_node->state);
+		// ->RF00000000-AdamXu
             if (rx_node->state == NODE_DEAD) {
                 continue;
             }
