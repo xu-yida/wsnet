@@ -195,6 +195,9 @@ void MEDIA_TX(call_t *c, packet_t *packet) {
         bundle_t *bundle = get_bundle_by_id(rx_node->bundle);
         int i;
 
+	// <-RF00000000-AdamXu-2018/07/06-add log for sic.
+	PRINT_REPLAY("rx_node->id=%d, rx_node->state=%d\n", rx_node->id, rx_node->state);
+	// ->RF00000000-AdamXu
         if (rx_node->state == NODE_DEAD) {
             continue;
         }
