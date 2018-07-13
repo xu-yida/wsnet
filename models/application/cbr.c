@@ -173,7 +173,7 @@ void tx(call_t *c) {
         
 // <-RF00000000-AdamXu-2018/07/06-test sic.
 #ifdef ADAM_TEST
-	printf("[CBR] node %d transmitted a data packet : desination id=%d  \n", c->node, destination.id);
+	printf("[CBR] node %d transmitted a data packet at %"PRId64": desination id=%d  \n", c->node, get_time(), destination.id);
 #endif
 // ->RF00000000-AdamXu
     if (SET_HEADER(&c0, packet, &destination) == -1) {
@@ -188,7 +188,13 @@ void tx(call_t *c) {
 /* ************************************************** */
 /* ************************************************** */
 void rx(call_t *c, packet_t *packet) {  
+// <-RF00000000-AdamXu-2018/07/06-test sic.
+#ifdef ADAM_TEST
+  printf("[CBR] node %d received a data packet at %"PRId64": rxdBm=%lf \n", c->node, get_time(), packet->rxdBm);
+#else
   printf("[CBR] node %d received a data packet : packet_size=%d  rxdBm=%lf \n", c->node, packet->size, packet->rxdBm);
+#endif
+// ->RF00000000-AdamXu
   packet_dealloc(packet);
 }
 
