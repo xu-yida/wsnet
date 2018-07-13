@@ -44,7 +44,7 @@
 #define LOG_WORLDSENS
 
 // <-RF00000000-AdamXu-2018/04/25-write log in file
-#define ADAM_RESULT_LOG
+//#define ADAM_RESULT_LOG
 
 #define ADAM_LOG_FILE
 #define ADAM_LOG_NAME "adam_log.log"
