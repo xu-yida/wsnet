@@ -129,7 +129,7 @@ void	adam_result_clean()
 	g_p_result = NULL;
 }
 #endif//ADAM_RESULT_LOG
-#endif ADAM_LOG_FILE
+#endif//ADAM_LOG_FILE
 // ->RF00000000-AdamXu
 
 /* ************************************************** */
