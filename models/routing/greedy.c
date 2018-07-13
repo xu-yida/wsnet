@@ -450,7 +450,7 @@ void rx(call_t *c, packet_t *packet) {
 // <-RF00000000-AdamXu-2018/07/06-test sic.
 #ifdef ADAM_TEST
 		delay = get_time() - header->time_start;
-		PRINT_RESULT("node %d received packet, delay=%"PRId64"", c->node, delay);
+		PRINT_RESULT("node %d received packet, delay=%"PRId64"\n", c->node, delay);
 #endif//ADAM_TEST
 // ->RF00000000-AdamXu
         while (i--) {

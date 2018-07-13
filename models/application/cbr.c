@@ -192,7 +192,7 @@ void tx(call_t *c) {
     TX(&c0, packet);
 // <-RF00000000-AdamXu-2018/07/06-test sic.
 #ifdef ADAM_TEST
-	PRINT_RESULT("%d packets transmitted", ++s_num_t);
+	PRINT_RESULT("%d packets transmitted\n", ++s_num_t);
 #endif
 // ->RF00000000-AdamXu
 }
@@ -204,7 +204,7 @@ void rx(call_t *c, packet_t *packet) {
 // <-RF00000000-AdamXu-2018/07/06-test sic.
 #ifdef ADAM_TEST
   printf("[CBR] node %d received a data packet at %"PRId64": rxdBm=%lf \n", c->node, get_time(), packet->rxdBm);
-	PRINT_RESULT("%d packets received", ++s_num_r);
+	PRINT_RESULT("%d packets received\n", ++s_num_r);
 #else
   printf("[CBR] node %d received a data packet : packet_size=%d  rxdBm=%lf \n", c->node, packet->size, packet->rxdBm);
 #endif
