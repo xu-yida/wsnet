@@ -8,6 +8,9 @@
 
 #include <include/modelutils.h>
 
+// <-RF00000000-AdamXu-2018/07/06-test sic.
+#define ADAM_TEST
+// ->RF00000000-AdamXu
 
 /* ************************************************** */
 /* ************************************************** */
@@ -353,6 +356,9 @@ void forward(call_t *c, packet_t *packet) {
 
     /* delivers packet to application layer */
     if (n_hop == NULL) {
+#ifdef ADAM_TEST
+        packet_dealloc(packet);
+#else
         array_t *up = get_entity_bindings_up(c);
         int i = up->size;
         
@@ -368,6 +374,7 @@ void forward(call_t *c, packet_t *packet) {
             
             RX(&c_up, packet_up);
         }
+#endif
 
         return;
     }
