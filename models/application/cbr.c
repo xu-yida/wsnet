@@ -173,7 +173,7 @@ void tx(call_t *c) {
         
 // <-RF00000000-AdamXu-2018/07/06-test sic.
 #ifdef ADAM_TEST
-	PRINT_APPLICATION("[CBR] node %d transmitted a data packet : desination id=%d  \n", c->node, destination.id);
+	printf("[CBR] node %d transmitted a data packet : desination id=%d  \n", c->node, destination.id);
 #endif
 // ->RF00000000-AdamXu
     if (SET_HEADER(&c0, packet, &destination) == -1) {
