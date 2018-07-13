@@ -428,7 +428,7 @@ void rx(call_t *c, packet_t *packet) {
     struct routing_header *header = (struct routing_header *) (packet->data + nodedata->overhead);
 // <-RF00000000-AdamXu-2018/07/06-test sic.
 #ifdef ADAM_TEST
-	uint64_t delay=0;
+	uint64_t delay;
 #endif//ADAM_TEST
 // ->RF00000000-AdamXu
 
