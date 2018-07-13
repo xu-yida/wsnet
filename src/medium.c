@@ -196,8 +196,8 @@ void MEDIA_TX(call_t *c, packet_t *packet) {
         int i;
 
 	// <-RF00000000-AdamXu-2018/07/06-add log for sic.
-	PRINT_REPLAY("rx_node->id=%d, rx_node->state=%d\n", rx_node->id, rx_node->state);
-	PRINT_REPLAY("dist=%f, propagation_range=%f\n", dist, propagation_range);
+	//PRINT_REPLAY("rx_node->id=%d, rx_node->state=%d\n", rx_node->id, rx_node->state);
+	//PRINT_REPLAY("dist=%f, propagation_range=%f\n", dist, propagation_range);
 	// ->RF00000000-AdamXu
         if (rx_node->state == NODE_DEAD) {
             continue;

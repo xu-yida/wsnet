@@ -103,6 +103,7 @@ int	adam_log_init()
 	return error_code;
 }
 
+#ifdef ADAM_RESULT_LOG
 int	adam_result_init()
 {
 	int error_code = 0;
@@ -113,6 +114,7 @@ int	adam_result_init()
 	}
 	return error_code;
 }
+#endif //ADAM_RESULT_LOG
 
 void	adam_log_clean()
 {
@@ -120,12 +122,14 @@ void	adam_log_clean()
 	g_p_file = NULL;
 }
 
+#ifdef ADAM_RESULT_LOG
 void	adam_result_clean()
 {
 	fclose(g_p_result);
 	g_p_result = NULL;
 }
-#endif
+#endif//ADAM_RESULT_LOG
+#endif ADAM_LOG_FILE
 // ->RF00000000-AdamXu
 
 /* ************************************************** */
@@ -135,8 +139,10 @@ int do_init(void) {
 // <-RF00000000-AdamXu-2018/04/25-write log into files
 #ifdef ADAM_LOG_FILE
 		adam_log_init() || /* log */
+#ifdef ADAM_RESULT_LOG
 		adam_result_init() || /* result */
-#endif
+#endif//ADAM_RESULT_LOG
+#endif//ADAM_LOG_FILE
 // ->RF00000000-AdamXu
 		das_init()             ||  /* das        */
 		sodas_init()           ||  /* sodas      */
@@ -188,8 +194,10 @@ void do_clean(void) {
 // <-RF00000000-AdamXu-2018/04/25-write log into files
 #ifdef ADAM_LOG_FILE
 	adam_log_clean(); /* log */
+#ifdef ADAM_RESULT_LOG
 	adam_result_clean(); /* result */
-#endif
+#endif//ADAM_RESULT_LOG
+#endif//ADAM_LOG_FILE
 // ->RF00000000-AdamXu
 	rng_clean();                   /* rng        */
 	scheduler_clean();             /* scheduler  */
