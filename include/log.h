@@ -13,6 +13,7 @@
 #include <stdio.h>
 
 FILE* g_p_file;
+FILE* g_p_result;
 #endif
 // ->RF00000000-AdamXu
 
@@ -270,5 +271,23 @@ FILE* g_p_file;
 #define PRINT_WORLDSENS(x...) do { } while (0)
 #endif //LOG_WORLDSENS
 /* end of edition */
+
+
+// <-RF00000000-AdamXu-2018/07/13-add result file.
+#ifdef ADAM_RESULT_LOG
+#ifdef ADAM_LOG_FILE
+#define PRINT_RESULT(x...) do{\
+		if(NULL != g_p_result)\
+		{\
+			fprintf(g_p_result, x); \
+		}\
+	}while(0)
+#else
+#define PRINT_RESULT(x...) printf(x)
+#endif
+#else //ADAM_RESULT_LOG
+#define PRINT_RESULT(x...) do { } while (0)
+#endif //ADAM_RESULT_LOG
+// ->RF00000000-AdamXu
 
 #endif //__log__

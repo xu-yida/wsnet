@@ -103,10 +103,27 @@ int	adam_log_init()
 	return error_code;
 }
 
+int	adam_result_init()
+{
+	int error_code = 0;
+	if(NULL == (g_p_result = fopen(ADAM_RESULT_NAME, "a")))
+	{
+		printf("Cannot open log file!\n");
+		error_code = -1;
+	}
+	return error_code;
+}
+
 void	adam_log_clean()
 {
 	fclose(g_p_file);
 	g_p_file = NULL;
+}
+
+void	adam_result_clean()
+{
+	fclose(g_p_result);
+	g_p_result = NULL;
 }
 #endif
 // ->RF00000000-AdamXu
@@ -118,6 +135,7 @@ int do_init(void) {
 // <-RF00000000-AdamXu-2018/04/25-write log into files
 #ifdef ADAM_LOG_FILE
 		adam_log_init() || /* log */
+		adam_result_init() || /* result */
 #endif
 // ->RF00000000-AdamXu
 		das_init()             ||  /* das        */
@@ -170,6 +188,7 @@ void do_clean(void) {
 // <-RF00000000-AdamXu-2018/04/25-write log into files
 #ifdef ADAM_LOG_FILE
 	adam_log_clean(); /* log */
+	adam_result_clean(); /* result */
 #endif
 // ->RF00000000-AdamXu
 	rng_clean();                   /* rng        */

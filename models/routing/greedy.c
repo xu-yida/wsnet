@@ -38,6 +38,11 @@ struct routing_header {
     position_t src_pos;
     int hop;
     int type;
+// <-RF00000000-AdamXu-2018/07/06-test sic.
+#ifdef ADAM_TEST
+	uint64_t time_start;
+#endif//ADAM_TEST
+// ->RF00000000-AdamXu
 };
 
 struct neighbor {
@@ -252,6 +257,11 @@ int set_header(call_t *c, packet_t *packet, destination_t *dst) {
     header->src_pos.z = get_node_position(c->node)->z;
     header->type = DATA_PACKET;
     header->hop = nodedata->hop;
+// <-RF00000000-AdamXu-2018/07/06-test sic.
+#ifdef ADAM_TEST
+	header->time_start = get_time();
+#endif//ADAM_TEST
+// ->RF00000000-AdamXu
 
     /* Set mac header */
     destination.id = n_hop->id;
@@ -320,6 +330,11 @@ int advert_callback(call_t *c, void *args) {
     header->src_pos.z = get_node_position(c->node)->z;
     header->type = HELLO_PACKET;
     header->hop = 1;
+// <-RF00000000-AdamXu-2018/07/06-test sic.
+#ifdef ADAM_TEST
+	header->time_start = get_time();
+#endif//ADAM_TEST
+// ->RF00000000-AdamXu
     
     /* send hello */
     TX(&c0, packet);
@@ -411,6 +426,11 @@ void rx(call_t *c, packet_t *packet) {
     array_t *up = get_entity_bindings_up(c);
     int i = up->size;
     struct routing_header *header = (struct routing_header *) (packet->data + nodedata->overhead);
+// <-RF00000000-AdamXu-2018/07/06-test sic.
+#ifdef ADAM_TEST
+	uint64_t delay=0;
+#endif//ADAM_TEST
+// ->RF00000000-AdamXu
 
     switch(header->type) {
     case HELLO_PACKET:         
@@ -427,6 +447,12 @@ void rx(call_t *c, packet_t *packet) {
             return;
         }
         
+// <-RF00000000-AdamXu-2018/07/06-test sic.
+#ifdef ADAM_TEST
+		delay = get_time() - header->time_start;
+		PRINT_RESULT("node %d received packet, delay=%"PRId64"", c->node, delay);
+#endif//ADAM_TEST
+// ->RF00000000-AdamXu
         while (i--) {
             call_t c_up = {up->elts[i], c->node, c->entity};
             packet_t *packet_up;	     
