@@ -66,6 +66,10 @@ struct nodedata {
     int data_hop;
 };
 
+#ifdef ADAM_TEST
+double g_delay = 0;
+int g_num_r = 0;
+#endif//ADAM_TEST
 
 /* ************************************************** */
 /* ************************************************** */
@@ -447,7 +451,10 @@ void rx(call_t *c, packet_t *packet) {
 // <-RF00000000-AdamXu-2018/07/06-test sic.
 #ifdef ADAM_TEST
 		delay = get_time() - header->time_start;
+		g_delay += delay;
 		PRINT_RESULT("node %d received packet, delay=%"PRId64"\n", c->node, delay);
+		PRINT_RESULT("%d packets received\n", ++g_num_r);
+		PRINT_RESULT("average delay is %f\n", g_delay/g_num_r);
 #endif//ADAM_TEST
 // ->RF00000000-AdamXu
         while (i--) {
