@@ -95,7 +95,7 @@ int do_parse(int argc, char *argv[]) {
 int	adam_log_init()
 {
 	int error_code = 0;
-	if(NULL == (g_p_file = fopen(ADAM_LOG_NAME, "a")))
+	if(NULL == (g_p_file = fopen(ADAM_LOG_NAME, "w")))
 	{
 		printf("Cannot open log file!\n");
 		error_code = -1;
@@ -107,7 +107,7 @@ int	adam_log_init()
 int	adam_result_init()
 {
 	int error_code = 0;
-	if(NULL == (g_p_result = fopen(ADAM_RESULT_NAME, "a")))
+	if(NULL == (g_p_result = fopen(ADAM_RESULT_NAME, "w")))
 	{
 		printf("Cannot open log file!\n");
 		error_code = -1;
