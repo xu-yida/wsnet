@@ -8,7 +8,9 @@
 
 #include <include/modelutils.h>
 
-
+// <-RF00000000-AdamXu-2018/07/18-add priority for 802.11 dcf.
+#define ADAM_DCF_PRIORITY
+// ->RF00000000-AdamXu
 /**
  * TODO: 
  *  - réajuster les timeout pour prendre valeurs de 802.11, taille de paquet... notamment temps de transmission, cca threshold...
@@ -96,7 +98,12 @@ struct nodedata {
     uint64_t nav;
     int rts_threshold;
 
+#ifndef ADAM_DCF_PRIORITY
     void *packets;
+#else
+    void *packets_low;
+    void *packets_high;
+#endif//ADAM_DCF_PRIORITY
     packet_t *txbuf;
 
     int cs;
@@ -170,7 +177,12 @@ int setnode(call_t *c, void *params) {
     nodedata->EDThreshold = EDThresholdMin;
 
     /* Init packets buffer */
+#ifndef ADAM_DCF_PRIORITY
     nodedata->packets = das_create();
+#else
+    nodedata->packets_low = das_create();
+    nodedata->packets_high = das_create();
+#endif//ADAM_DCF_PRIORITY
     nodedata->txbuf = NULL;
 
     /* get params */
@@ -209,10 +221,24 @@ int setnode(call_t *c, void *params) {
 int unsetnode(call_t *c) {
     struct nodedata *nodedata = get_node_private_data(c);
     packet_t *packet;
+#ifndef ADAM_DCF_PRIORITY
+    nodedata->packets = das_create();
     while ((packet = (packet_t *) das_pop(nodedata->packets)) != NULL) {
         packet_dealloc(packet);
     }
-    das_destroy(nodedata->packets);    
+    das_destroy(nodedata->packets);  
+#else//ADAM_DCF_PRIORITY
+    nodedata->packets_low = das_create();
+    while ((packet = (packet_t *) das_pop(nodedata->packets_low)) != NULL) {
+        packet_dealloc(packet);
+    }
+    das_destroy(nodedata->packets_high);
+    nodedata->packets_high = das_create();
+    while ((packet = (packet_t *) das_pop(nodedata->packets_high)) != NULL) {
+        packet_dealloc(packet);
+    }
+    das_destroy(nodedata->packets_high);
+#endif//ADAM_DCF_PRIORITY
     if (nodedata->txbuf) {
         packet_dealloc(nodedata->txbuf);
     }
@@ -273,7 +299,15 @@ int dcf_802_11_state_machine(call_t *c, void *args) {
     case STATE_IDLE:
         /* Next packet to send */
         if (nodedata->txbuf == NULL) {
+#ifndef ADAM_DCF_PRIORITY
             nodedata->txbuf = (packet_t *) das_pop_FIFO(nodedata->packets);
+#else
+		nodedata->txbuf = (packet_t *) das_pop_FIFO(nodedata->packets_high);
+		if(NULL == nodedata->txbuf)
+		{
+			nodedata->txbuf = (packet_t *) das_pop_FIFO(nodedata->packets_low);
+		}
+#endif//ADAM_DCF_PRIORITY
             if (nodedata->txbuf == NULL) {
                 return 0;
             }
@@ -513,15 +547,26 @@ int dcf_802_11_state_machine(call_t *c, void *args) {
 /* ************************************************** */
 /* ************************************************** */
 void tx(call_t *c, packet_t *packet) {
-    struct nodedata *nodedata = get_node_private_data(c);
-    PRINT_MAC("B packet->id=%d, c->node=%d\n", packet->id, c->node);
-    
-    das_insert(nodedata->packets, (void*)packet);
+	struct nodedata *nodedata = get_node_private_data(c);
+	PRINT_MAC("B packet->id=%d, c->node=%d\n", packet->id, c->node);
 
-    if (nodedata->state == STATE_IDLE) {
-        nodedata->clock = get_time();  
-        dcf_802_11_state_machine(c,NULL);
-    } 
+#ifndef ADAM_DCF_PRIORITY
+	das_insert(nodedata->packets, (void*)packet);
+#else
+	if(1 == packet->type)
+	{
+		das_insert(nodedata->packets_high, (void*)packet);
+	}
+	else if(0 == packet->type)
+	{
+		das_insert(nodedata->packets_low, (void*)packet);
+	}
+#endif//ADAM_DCF_PRIORITY
+
+	if (nodedata->state == STATE_IDLE) {
+		nodedata->clock = get_time();  
+		dcf_802_11_state_machine(c,NULL);
+	} 
 }
 
 
