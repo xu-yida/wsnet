@@ -45,6 +45,11 @@
 #define aUnitBackoffPeriod    20000
 #define EDThresholdMin        -74
 
+// <-RF00000000-AdamXu-2018/10/16-add dcf priority.
+#ifdef ADAM_DCF_PRIORITY
+#define ADAM_DCF_PRIORITY_MIN_BE_DIFF 3
+#endif//ADAM_DCF_PRIORITY
+// ->RF00000000-AdamXu
 
 /* ************************************************** */
 /* ************************************************** */
@@ -415,10 +420,29 @@ int dcf_802_11_state_machine(call_t *c, void *args) {
         if ((++nodedata->BE) > macMaxBE) {
             nodedata->BE = macMaxBE;
         }
+// <-RF00000000-AdamXu-2018/10/16-add dcf priority.
+#ifdef ADAM_DCF_PRIORITY
+		if(1 == nodedata->txbuf->type)
+		{
+			nodedata->backoff = get_random_double() 
+			* (pow(2, nodedata->BE - ADAM_DCF_PRIORITY_MIN_BE_DIFF) - 1) 
+			* aUnitBackoffPeriod 
+			+ macMinDIFSPeriod;
+		}
+		else
+		{
+			nodedata->backoff = get_random_double() 
+			* (pow(2, nodedata->BE) - 1) 
+			* aUnitBackoffPeriod 
+			+ macMinDIFSPeriod;
+		}
+#elif// ADAM_DCF_PRIORITY
         nodedata->backoff = get_random_double() 
             * (pow(2, nodedata->BE) - 1) 
             * aUnitBackoffPeriod 
             + macMinDIFSPeriod;
+#endif// ADAM_DCF_PRIORITY
+// ->RF00000000-AdamXu
         nodedata->backoff_suspended = 0;
         nodedata->state = STATE_BACKOFF;
         nodedata->state_pending = STATE_BACKOFF;				
