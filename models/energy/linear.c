@@ -6,6 +6,9 @@
  **/
 #include <include/modelutils.h>
 
+// <-RF00000000-AdamXu-2018/10/16-modify energy consumption.
+#define ADAM_SIC_BATTERY
+// ->RF00000000-AdamXu
 
 /* ************************************************** */
 /* ************************************************** */
@@ -108,7 +111,19 @@ int ioctl(call_t *c, int option, void *in, void **out) {
 /* ************************************************** */
 void consume_tx(call_t *c, uint64_t duration, double txdBm) {
     struct nodedata *nodedata = get_node_private_data(c);
+#ifdef ADAM_SIC_BATTERY
+	// if txdBm<0, it is power ratio. Otherwise it is 1
+	if(0 > txdBm)
+	{
+		nodedata->energy -= duration * nodedata->tx * txdBm; 
+	}
+	else
+	{
+		nodedata->energy -= duration * nodedata->tx; 
+	}
+#elif// ADAM_SIC_BATTERY
     nodedata->energy -= duration * nodedata->tx; 
+#endif// ADAM_SIC_BATTERY
     if (nodedata->energy <= 0) {
         nodedata->energy = 0;
         node_kill(c->node);
