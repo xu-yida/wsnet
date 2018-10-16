@@ -115,7 +115,7 @@ void consume_tx(call_t *c, uint64_t duration, double txdBm) {
 	// if txdBm<0, it is power ratio. Otherwise it is 1
 	if(0 > txdBm)
 	{
-		nodedata->energy -= duration * nodedata->tx * txdBm; 
+		nodedata->energy += duration * nodedata->tx * txdBm; 
 	}
 	else
 	{
