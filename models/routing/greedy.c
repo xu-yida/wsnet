@@ -484,7 +484,7 @@ void rx(call_t *c, packet_t *packet) {
 		PRINT_RESULT("%d packets received\n", g_num_r);
 		PRINT_RESULT("%d priority0 packets received, %d priority1 packets received\n", g_num_r_priority0, g_num_r_priority1);
 		PRINT_RESULT("average delay is %f\n", g_delay/g_num_r);
-		PRINT_RESULT("maximal priority0 delay is %f, maximal priority1 delay is %f\n", g_delay_max0, g_delay_max1);
+		PRINT_RESULT("maximal priority0 delay is %"PRId64", maximal priority1 delay is %"PRId64"\n", g_delay_max0, g_delay_max1);
 		PRINT_RESULT("average delay of priority0 packets is %f, average delay of priority1 packets is %f\n", g_delay_priority0/g_num_r_priority0, g_delay_priority1/g_num_r_priority1);
 #endif//ADAM_TEST
 // ->RF00000000-AdamXu
