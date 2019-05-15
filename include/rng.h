@@ -251,7 +251,7 @@ nodeid_t get_random_node(nodeid_t exclusion);
  * \param distribution type from probabilistic_distribution.h.
  * \return A random integer.
  **/
-int get_random_double_distribution(int distribution_types);
+double get_random_double_distribution(int distribution_types);
 
 /** 
  * \brief Return a random integer from specific probability distribution.
