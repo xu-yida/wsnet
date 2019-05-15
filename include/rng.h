@@ -249,7 +249,7 @@ nodeid_t get_random_node(nodeid_t exclusion);
 /** 
  * \brief Return a random double between 0 and 1 from specific probability distribution.
  * \param distribution type from probabilistic_distribution.h.
- * \return A random integer.
+ * \return A random double.
  **/
 double get_random_double_distribution(int distribution_types);
 
