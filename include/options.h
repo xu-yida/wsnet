@@ -50,6 +50,8 @@
 #define ADAM_LOG_NAME "adam_log.log"
 #define ADAM_RESULT_NAME "adam_result.txt"
 
+#define ADAM_RANDOM
+
 #define ADAM_TEST
 // ->RF00000000-AdamXu
 

@@ -243,5 +243,22 @@ uint64_t get_random_time_range(uint64_t min, uint64_t max);
  **/
 nodeid_t get_random_node(nodeid_t exclusion);
 
+#ifdef ADAM_RANDOM
+
+
+/** 
+ * \brief Return a random double between 0 and 1 from specific probability distribution.
+ * \param distribution type from probabilistic_distribution.h.
+ * \return A random integer.
+ **/
+int get_random_double_distribution(int distribution_types);
+
+/** 
+ * \brief Return a random integer from specific probability distribution.
+ * \param distribution type from probabilistic_distribution.h.
+ * \return A random integer.
+ **/
+int get_random_integer_distribution(int distribution_types);
+#endif//ADAM_RANDOM
 
 #endif //__rng_public__
