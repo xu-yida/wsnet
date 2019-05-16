@@ -552,7 +552,7 @@ nodeid_t get_random_node(nodeid_t exclusion) {
 
 double get_random_double_poisson(int mu) {
     poisson_args_t *args;
-    if ((args = (uniform_args_t *) mem_fs_alloc(mem_rng)) == NULL) {
+    if ((args = (poisson_args_t *) mem_fs_alloc(mem_rng)) == NULL) {
       printf("Error: Error while allocating memory for rng. Exiting!\n");
       exit(-1);
     }
@@ -564,7 +564,7 @@ double get_random_double_poisson(int mu) {
 
 int get_random_integer_poisson(int mu) {
     poisson_args_t *args;
-    if ((args = (uniform_args_t *) mem_fs_alloc(mem_rng)) == NULL) {
+    if ((args = (poisson_args_t *) mem_fs_alloc(mem_rng)) == NULL) {
       printf("Error: Error while allocating memory for rng. Exiting!\n");
       exit(-1);
     }
