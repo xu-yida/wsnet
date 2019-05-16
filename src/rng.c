@@ -550,28 +550,26 @@ nodeid_t get_random_node(nodeid_t exclusion) {
 
 #ifdef ADAM_RANDOM
 
-double get_random_double_distribution(int distribution_types) {
-    uniform_args_t *args;
+double get_random_double_poisson(int mu) {
+    poisson_args_t *args;
     if ((args = (uniform_args_t *) mem_fs_alloc(mem_rng)) == NULL) {
       printf("Error: Error while allocating memory for rng. Exiting!\n");
       exit(-1);
     }
-    args->a = 0;
-    args->b = 1;
-    double result = get_random_double_gsl((void *)DEFAULT_RNG, distribution_types, args);
+    args->mu = mu;
+    double result = get_random_double_gsl((void *)DEFAULT_RNG, POISSON, args);
     mem_fs_dealloc(mem_rng, args);
     return result;
 }
 
-int get_random_integer_distribution(int distribution_types) {
-    uniform_args_t *args;
+int get_random_integer_poisson(int mu) {
+    poisson_args_t *args;
     if ((args = (uniform_args_t *) mem_fs_alloc(mem_rng)) == NULL) {
       printf("Error: Error while allocating memory for rng. Exiting!\n");
       exit(-1);
     }
-    args->a = INT_MIN;
-    args->b = INT_MAX;
-    int result = get_random_integer_gsl((void *)DEFAULT_RNG, distribution_types, args);
+    args->mu = mu;
+    int result = get_random_integer_gsl((void *)DEFAULT_RNG, POISSON, args);
     mem_fs_dealloc(mem_rng, args);
     return result;
 }
