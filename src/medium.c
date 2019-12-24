@@ -126,6 +126,7 @@ void MEDIA_TX(call_t *c, packet_t *packet) {
 	PRINT_REPLAY("packet->id=%d, c->node=%d\n", packet->id, c->node);
 	PRINT_REPLAY("packet->clock0=%"PRId64"\n", packet->clock0);
 	PRINT_REPLAY("packet->clock1=%"PRId64"\n", packet->clock1);
+	PRINT_REPLAY("packet->real_size=%d, packet->Tb=%"PRId64", packet->duration=%"PRId64"\n", packet->real_size, packet->Tb, packet->duration);
 	// ->RF00000000-AdamXu
 
 	/* scheduler tx_end event */
